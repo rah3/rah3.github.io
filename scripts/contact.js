@@ -21,7 +21,7 @@ function renderContactPage() {
                         <div class="card-body">
                             <h5 class="card-title text-primary fw-bold">LinkedIn</h5>
                             <p class="card-text text-muted small">Connect with me for professional updates and networking.</p>
-                            <a href="https://www.linkedin.com/ca/rahiedatta" target="_blank" class="btn btn-outline-primary">View Profile</a>
+                            <a href="https://www.linkedin.com/in/rahiedatta" target="_blank" class="btn btn-outline-primary">View Profile</a>
                         </div>
                     </div>
                 </div>

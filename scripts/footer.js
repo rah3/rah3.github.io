@@ -11,7 +11,7 @@ function renderFooter() {
                     <div class="col-md-4 mb-4">
                         <h6 class="text-uppercase fw-bold mb-3">Contact</h6>
                         <p class="small mb-1"><a href="mailto:rahiedatta@gmail.com" class="text-white-50 text-decoration-none">rahiedatta@gmail.com</a></p>
-                        <p class="small"><a href="https://www.linkedin.com/ca/rahiedatta" target="_blank" class="text-white-50 text-decoration-none">LinkedIn Profile</a></p>
+                        <p class="small"><a href="https://www.linkedin.com/in/rahiedatta" target="_blank" class="text-white-50 text-decoration-none">LinkedIn Profile</a></p>
                     </div>
 
                     <div class="col-md-4 mb-4">
