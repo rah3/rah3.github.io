@@ -1,4 +1,4 @@
-// script.js
+// resume.js
 // JavaScript code to dynamically load all resume sections
 
 /**
