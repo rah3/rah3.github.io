@@ -73,11 +73,7 @@ footer p {
 }
 
 nav a {
-  margin-right: 15px;
-}
-
-nav a:hover {
-  text-decoration: underline;
+  margin-right: 0px;
 }
 
 #skills-section .card {
@@ -144,4 +140,13 @@ nav a:hover {
 
 html {
   scroll-behavior: smooth;
+}
+
+.card-title {
+  color: #458fff;
+}
+
+.table {
+  border-color: #003d99;
+  border-style: 1pt;
 }

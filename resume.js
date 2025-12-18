@@ -9,22 +9,35 @@ function loadSkills() {
     const skills = [
         { category: "Technical Skills", items: "C++, JavaScript, Python, Java" },
         { category: "Tools", items: "Node.js, SPSS, MATLAB, Markdown" },
-        { category: "Soft Skills", items: "Accountability, Flexibility, Organization, Willingness to learn and grow, Teamwork, Communication Skills, Listening Skills, Time Management" },
-        { category: "Languages", items: "English (Full professional proficiency), Bengali (Native or proficiency)" }
+        { category: "Soft Skills", items: "Accountability, Flexibility, Organization, Willingness to learn and grow, Teamwork, Communication Skills, Listening Skills, and Time Management" },
     ];
 
     const skillsContainer = document.getElementById('skills-container');
 
     skills.forEach(skill => {
         const col = document.createElement('div');
-        col.className = 'col-md-5 mb-3';
+        col.className = 'col-md-4 mb-3';
         col.innerHTML = `
-        <div class="card h-100 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title text-primary">${skill.category}</h5>
-                <p class="card-text">${skill.items}</p>
+        <table class="table table-striped-columns table-bordered">
+            <div class="card h-100 shadow-sm">
+                <thead>
+                    <th scope="col">
+                        <h5 class="card-title text-center">
+                            <u>
+                                ${skill.category}
+                            </u>
+                        </h5>
+                    </th>
+                </thead>
+                <tbody>
+                    <tr scope="row" class="align-middle">
+                        <td>
+                            <p class="card-text">${skill.items}</p>
+                        </td>
+                    </tr>
+                </tbody>
             </div>
-        </div>
+        </table>
     `;
         skillsContainer.appendChild(col);
     });
