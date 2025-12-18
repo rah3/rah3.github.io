@@ -73,7 +73,7 @@ function loadExperience() {
             details: `
                 <ul>
                     <li>Checked, graded, and observed students' work both using the Class Navi platform and on paper.</li>
-                    Arranged worksheets in a physical and digital manner on Class Navi (Kumon Connect platform).
+                    <li>Arranged worksheets in a physical and digital manner on Class Navi (Kumon Connect platform).</li>
                     <li>Ensured that students completed their assignments fully correcting both on the worksheet and on Class Navi.</li>
                     <li>Helped and guided students when Center Policies and Kumon Method standards are applicable.</li>
                     <li>Updated the instructor with verbal or written feedback concerning student behavior or worksheet performance as deemed necessary.</li>
