@@ -41,7 +41,7 @@ function loadEducation() {
                 `
                 <ul>
                     <li>Relevant Courses (optional): Discrete Structures I/II, Introduction to Statistical Modelling, Abstract Data Types and Algorithms, Introduction to Software Engineering, Elementary Calclulus I/II, Linear Algebra for Science and Engineering</li>
-                    <li>Average CGPA - 9.26/12 (B+)</li>
+                    <!-- <li>Average CGPA - 9.26/12 (B+)</li> -->
                 </ul>
             `,
             duration: "September 2021 - Present"
