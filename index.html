@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rahie Datta | Portfolio</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style/styles.css">
     <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
 </head>
 
@@ -49,6 +49,15 @@
             <h1 class="display-4 font-weight-bold">Rahie Datta</h1>
             <p class="lead">Bachelor of Computer Science Student at Carleton University</p>
         </div>
+        <a href="https://github.com/rah3/Miscellaneous-F25/blob/main/Co-op%20Job%20Package/DattaRahie.pdf"
+            target="_blank" class="btn btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-file-earmark" viewBox="0 0 16 16">
+                <path
+                    d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z" />
+            </svg>
+            View Full PDF Package
+        </a>
     </header>
     <main id="top"> <!--- Nothing here as DOM must load--> ></main>
     <h1 class="text-center my-4">
@@ -92,14 +101,21 @@
         </section>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="home.js"></script>
-    <script src="resume.js"></script>
-    <script src="contact.js"></script>
-    <script src="backToTopOperation.js"></script>
-    <button type="button" class="btn btn-primary btn-lg rounded-circle" id="btn-back-to-top"
-        style="position: fixed; bottom: 5px; right: 5px; display: none; z-index: 1000;">
+    <script src="scripts/home.js"></script>
+    <script src="scripts/resume.js"></script>
+    <script src="scripts/contact.js"></script>
+    <script src="scripts/scrollOperations.js"></script>
+    <button type="button" class="btn btn-primary btn-lg rounded-circle" id="btn-back-to-top">
         &uarr;
     </button>
 </body>
+
+<button type="button" class="btn btn-primary btn-lg rounded-circle" id="btn-go-to-bottom">
+    &darr;
+</button>
+<footer id="main-footer">
+    <!-- footer.js handles the footer -->
+</footer>
+<script src="scripts/footer.js"></script>
 
 </html>

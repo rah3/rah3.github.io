@@ -38,12 +38,12 @@ function loadEducation() {
     container.innerHTML = `
         <div class="p-3 bg-white border-start border-primary border-4 shadow-sm">
             <div class="d-flex justify-content-between align-items-center">
-                <h5 class="fw-bold mb-0">Bachelor of Computer Science</h5>
-                <span class="badge bg-secondary">2021 – Present</span>
+                <h5 class="fw-bold mb-0">Bachelor of Computer Science with Minor in Mathematics</h5>
+                <span class=""text-muted small"">2021 - Present</span>
             </div>
             <p class="text-primary mt-1 mb-2">Carleton University</p>
             <p class="mb-1"><strong>CGPA: 9.26 / 12 (B+)</strong></p>
-            <p class="small text-muted">Minor in Mathematics | Fundamentals of Web Applications (A+)</p>
+            <p class="small"><em>Relevant Courses (optional)</em>: Discrete Structures I/II, Introduction to Statistical Modeling, Abstract Data Types and Algorithms, Introduction to Software Engineering and Elementary Calculus I/II</p>    
         </div>
     `;
 }
