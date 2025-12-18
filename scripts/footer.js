@@ -15,7 +15,7 @@ function renderFooter() {
                     </div>
 
                     <div class="col-md-4 mb-4">
-                        <h5 class="fw-bold text-primary">Rahie's Portfolio</h5>
+                        <h5 class="fw-bold text-primary">Rahie Datta</h5>
                         <p class="small text-white-50">Computer Science Student at Carleton University</p>
                     </div>
 
