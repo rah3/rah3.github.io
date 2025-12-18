@@ -7,9 +7,10 @@
  */
 function loadSkills() {
     const skills = [
-        { category: "Languages (Technical Skills)", items: "C++, JavaScript, Python, Java" },
+        { category: "Technical Skills", items: "C++, JavaScript, Python, Java" },
         { category: "Tools", items: "Node.js, SPSS, MATLAB, Markdown" },
         { category: "Soft Skills", items: "Accountability, Flexibility, Organization, Willingness to learn and grow, Teamwork, Communication Skills, Listening Skills, Time Management" },
+        { category: "Languages", items: "English (Full professional proficiency), Bengali (Native or proficiency)" }
     ];
 
     const skillsContainer = document.getElementById('skills-container');
