@@ -53,12 +53,13 @@ function loadEducation() {
     education.forEach(edu => {
         const div = document.createElement('div');
         div.className = 'mb-4 border-start ps-3 border-primary';
-        div.innerHTML = `
+        div.innerHTML = 
+        `
         <h4>${edu.degree}</h4>
         <p class="text-secondary">${edu.institution}</p>
         <p><em>${edu.duration}</em></p>
         <p>${edu.details}</p>
-    `;
+        `;
         educationContainer.appendChild(div);
     });
 }
