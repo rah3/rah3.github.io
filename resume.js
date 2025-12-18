@@ -170,6 +170,19 @@ function loadVolunteerExperience() {
 function loadProjects() {
     const projects = [
         {
+            title: "Philosophy API Based Dynamic Web Application",
+            location: "Foundations of Web Applications, School of Computer Science, Carleton University, Ottawa, Ontario",
+            duration: "April 2024",
+            details:
+                `
+                    <ul>
+                        <li>Reviewed the API that would best suit the needs for the proposed project</li>
+                        <li>Designed and implemented the dynamic web application using Node.js framework and Handlebars, through which users composed and viewed blog entries</li>
+                        <li>Resolved issues that arose through thorough code testing and debugging</li>
+                    </ul>
+                `,
+        },
+        {
             title: "Modern Book Review: on Pathogenesis: A History of the World in Eight Plagues",
             location: "Department of Technology, Society and Environmental Studies, College of the Humanities,  Carleton University, Ottawa, Ontario",
             duration: "July 2024",
@@ -179,19 +192,6 @@ function loadProjects() {
                         <li>Collected relevant materials and terms from multiple sources to try to consider the subject from different angles</li>
                         <li>Analyzed research findings to comprehend the interrelating and sometimes conflicting complex and abstract concepts</li>
                         <li>Prepared synthesis, clear, well-structured, and analytical papers derived from the collected information and the conclusions reached</li>
-                    </ul>
-                `,
-        },
-        {
-            title: "Philosophy API Based Dynamic Web Application",
-            location: "Foundations of Web Applications, School of Computer Science, Carleton University, Ottawa, Ontario",
-            duration: "April 2024",
-            details:
-                `
-                    <ul>
-                        <li>Reviewed the API that would best suit the needs for the proposed project</li>
-                        <li>Designed and implemented the design for the dynamic web application using Node.js framework and Handlebars, through which users composed and viewed blog entries</li>
-                        <li>Resolved issues that arose through thorough code testing and debugging</li>
                     </ul>
                 `,
         }
