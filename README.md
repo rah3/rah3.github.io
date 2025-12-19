@@ -4,7 +4,7 @@ A dynamic, mobile-responsive portfolio website built to showcase my technical sk
 
 ## 🚀 Live Demo
 
-[View my portfolio here](https://your-github-username.github.io/portfolio/)
+[View my portfolio here](https://rah3.github.io/)
 
 ## 🛠️ Tech Stack
 
