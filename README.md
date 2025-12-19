@@ -54,4 +54,5 @@ portfolio/
 ## ⚙️ How to Run Locally
 
 1. Clone the repo: `git clone https://github.com/your-username/portfolio.git`
-2. Open `index.html` in your preferred browser.
+2. Run the server using the command `npm test`.
+3. Open `index.html` in your preferred browser.
