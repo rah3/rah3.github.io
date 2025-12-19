@@ -36,3 +36,8 @@ portfolio/
 ├── index.html # Main structure and entry point
 ├── node_modules/ # Stores all the dependencies installed via npm (Node Package Manager).
 └── server.js # Server testing
+
+## ⚙️ How to Run Locally
+
+1. Clone the repo: `git clone https://github.com/your-username/portfolio.git`
+2. Open `index.html` in your preferred browser.
