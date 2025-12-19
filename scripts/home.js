@@ -23,7 +23,7 @@ function renderHomePage() {
                     <div class="card border-primary shadow-sm">
                         <div class="card-body text-center">
                             <h6 class="text-uppercase text-muted small">Current Academic Standing</h6>
-                            <h2 class="text-primary mb-0">9.26 / 12</h2>
+                            <h2 class="text-primary mb-0">9.26</h2>
                             <p class="small mb-0">Carleton University CGPA</p>
                         </div>
                     </div>
