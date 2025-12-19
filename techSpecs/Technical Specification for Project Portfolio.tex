@@ -1,0 +1,49 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry, amsmath}
+\geometry{letterpaper, margin=1in}
+\usepackage{hyperref}
+\usepackage{listings}
+
+\title{Technical Specification: Dynamic Portfolio Architecture}
+\author{Rahie $\lvert$ Carleton University}
+\date{December 2025}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\section{System Overview}
+The portfolio is a modular web application designed for high performance and maintainability. It utilizes a decoupled architecture where the content layer (JSON-like JS objects) is separated from the presentation layer (Bootstrap 5 Grid System).
+
+\section{Core Architecture}
+The system architecture is defined by a modular grid geometry and a calculated navigation logic, both of which are detailed in the subsections of the technical specifications below.
+
+\subsection{Grid Geometry}
+The layout follows a symmetric 2x2 matrix for primary resume components and a $1 \times 3$ vector for supplementary data:
+\begin{itemize}
+    \item \textbf{Row 1:} $\text{Objective} \oplus \text{Education}$
+    \item \textbf{Row 2:} $\text{Skills} \oplus \text{Work Experience}$
+    \item \textbf{Row 3:} $\text{Volunteering} \otimes \text{Projects} \otimes \text{Contact}$
+\end{itemize}
+
+\subsection{Navigation Calculus}
+Scroll visibility for the Navigation UI is determined by the following threshold logic:
+\[
+    f(s) =
+    \begin{cases}
+        \text{display: block} & \text{if } s > 150 \text{ px}    \\
+        \text{display: none}  & \text{if } s \leq 150 \text{ px}
+    \end{cases}
+\]
+where $s$ represents the vertical scroll offset ($\texttt{document.documentElement.scrollTop}$).
+
+\section{Technical Implementation}
+\begin{itemize}
+    \item \textbf{Event Handling:} Utilizes \texttt{DOMContentLoaded} to ensure DOM readiness before script execution.
+    \item \textbf{Memory Management:} Cached DOM references to minimize redundant \texttt{getElementById} calls during scroll events.
+    \item \textbf{Version Control:} Managed via Git with a structured feature-branch workflow.
+\end{itemize}
+
+\end{document}
