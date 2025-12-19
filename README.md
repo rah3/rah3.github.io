@@ -22,19 +22,33 @@ A dynamic, mobile-responsive portfolio website built to showcase my technical sk
 ## 📁 Project Structure
 
 portfolio/
+
 ├── index.html # Main structure and entry point
+
 ├── images/ # Images
+
 ├── css/ # Custom styling
+
 ├── scripts/ # Web page scripts
+
 ├───── home.js # Handles homepage data
+
 ├───── resume.js # Handles resume data
+
 ├───── contact.js # Handles contact data
+
 ├───── footer.js # Handles footer content
+
 ├───── scrollOperations.js # Handles the scrolling operations
+
 ├── package.json # Handles and stores commands for testing/debugging
+
 ├── package-lock.json # Stores all the dependencies from `node_modules` directory
+
 ├── index.html # Main structure and entry point
+
 ├── node_modules/ # Stores all the dependencies installed via npm (Node Package Manager).
+
 └── server.js # Server testing
 
 ## ⚙️ How to Run Locally
