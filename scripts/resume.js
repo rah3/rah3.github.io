@@ -1,9 +1,29 @@
 // resume.js
 // JavaScript code to dynamically load all resume sections
 
+
+
 /**
- * Dynamically loads skills, education, and experience sections
- * into the HTML document.
+ * Dynamically loads the objective section into the HTML document.
+ */
+function loadObjective() {
+    // This text should be concise and professional
+    const container = document.getElementById('objective-container');
+    const objectiveText = `
+        To find a position that will afford the opportunity to utilize my present skills while at the same time provide an equally good experience. I am willing to accept any kind of responsibility to further enhance my career along with new challenges and broadened views.
+    `;
+
+    container.innerHTML = `
+        <div class="bg-white">
+            <p class="fst-italic mb-0">
+                ${objectiveText.trim()}
+            </p>
+        </div>
+    `;
+}
+
+/**
+ * Dynamically loads the skills section into the HTML document.
  */
 function loadSkills() {
     const skills = [
@@ -17,11 +37,13 @@ function loadSkills() {
 
     // We use col-12 here so they stack within the left-hand column
     container.innerHTML = skills.map(skill => `
-        <div class="col-12 mb-3">
-            <div class="card shadow-sm border-0 bg-light">
-                <div class="card-body">
-                    <h6 class="fw-bold text-primary">${skill.category}</h6>
-                    <p class="small mb-0">${skill.items}</p>
+        <div class="container">
+            <div class="col-12 mb-3">
+                <div class="card shadow-sm border-0 bg-light">
+                    <div class="card-body">
+                        <h6 class="fw-bold text-primary">${skill.category}</h6>
+                        <p class="small mb-0">${skill.items}</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -61,7 +83,7 @@ function loadExperience() {
     ];
 
     container.innerHTML = experiences.map(exp => `
-        <div class="mb-4">
+        <div class="mb-4 border-start ps-3 border-primary">
             <div class="d-flex justify-content-between">
                 <h5 class="fw-bold mb-0">${exp.title}</h5>
                 <span class="text-muted small">${exp.date}</span>
@@ -100,12 +122,12 @@ function loadVolunteerExperience() {
 
     volunteerExperience.forEach(volunteer => {
         const div = document.createElement('div');
-        div.className = 'mb-4 border-start ps-3 border-primary';
+        div.className = 'mb-4';
         div.innerHTML = `
-        <h4>${volunteer.title}</h4>
-        <p class="text-secondary">${volunteer.organization}</p>
-        <p><em>${volunteer.duration}</em></p>
-        <p>${volunteer.details}</p>
+            <h4>${volunteer.title}</h4>
+            <p class="text-secondary">${volunteer.organization}</p>
+            <p><em>${volunteer.duration}</em></p>
+            <p>${volunteer.details}</p>
     `;
         volunteeringContainer.appendChild(div);
     });
@@ -148,7 +170,7 @@ function loadProjects() {
 
     projects.forEach((project) => {
         const div = document.createElement('div');
-        div.className = 'mb-4 border-start ps-3 border-primary';
+        div.className = 'mb-4';
         div.innerHTML = `
         <h4>${project.title}</h4>
         <p class="text-secondary">${project.location}</p>
@@ -161,6 +183,7 @@ function loadProjects() {
 
 // Function calls to load contents of resume
 document.addEventListener('DOMContentLoaded', () => {
+    loadObjective();
     loadSkills();
     loadEducation();
     loadExperience();

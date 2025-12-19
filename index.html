@@ -30,7 +30,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" href="#objective">Objective</a></li>
-                                <li><a class="dropdown-item" href="#skills">Skills Profile</a></li>
+                                <li><a class="dropdown-item" href="#skills-profile">Skills Profile</a></li>
                                 <li><a class="dropdown-item" href="#education">Education</a></li>
                                 <li><a class="dropdown-item" href="#experience">Work Experience</a></li>
                                 <li><a class="dropdown-item" href="#volunteering">Volunteering</a></li>
@@ -45,7 +45,7 @@
         </nav>
     </header>
     <header class="bg-primary text-white text-center py-5">
-        <div class="container">
+        <div class="container" id="name-header">
             <img src="images/profile.jpg" alt="Rahie Datta" class="img-fluid rounded mb-3" style="max-width: 200px;">
             <h1 class="display-4 font-weight-bold">Rahie Datta</h1>
             <p class="lead">Bachelor of Computer Science Student at Carleton University</p>
@@ -65,38 +65,61 @@
         <u>Resume</u>
     </h1>
     <main class="container my-5">
-        <section id="objective" class="mb-5">
-            <h2>Objective</h2>
-            <p class="text-muted">My goal is to find a position that will afford the opportunity to utilize my present
-                skills while providing an equally good experience.</p>
-        </section>
-
-        <div class="col-md-4 mb-5">
-            <h2 class="mb-5">Skills Profile</h2>
-            <div id="skills-container" class="row">
+        <div class="row g-4">
+            <div class="col-6 col-sm-6 border-bottom pb-4">
+                <section id="objective">
+                    <h3 class="mb-5 fw-bold text-primary">Objective</h3>
+                    <div id="objective-container" class="mt-3">
+                    </div>
+                </section>
             </div>
+
+            <div class="col-6 col-sm-6 border-bottom border-start pb-4">
+                <section id="education">
+                    <h3 class="fw-bold text-primary">Education</h3>
+                    <div id="education-container" class="mt-3 text-start">
+                    </div>
+                </section>
+            </div>
+
+            <div class="w-100"></div>
+
+            <div class="col-6 col-sm-6 pt-4">
+                <section id="skills-profile">
+                    <h3 class="fw-bold text-primary">Skills Profile</h3>
+                    <div id="skills-container" class="row mt-3">
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-6 col-sm-6 border-start pt-4">
+                <section id="experience">
+                    <h3 class="fw-bold text-primary">Work Experience</h3>
+                    <div id="experience-container" class="mt-3 text-start">
+                    </div>
+                </section>
+            </div>
+
         </div>
+    </main>
 
-        <div class="col-md-4 mb-5">
-            <section id="education" class="mb-5">
-                <h2 class="mb-5">Education</h2>
-                <div id="education-container">
-                </div>
-            </section>
-
-            <section id="experience">
-                <h2 class="mb-5">Work Experience</h2>
-                <div id="experience-container">
-                </div>
-            </section>
-        </div>
-
-        <section id="volunteering" class="mb-5">
-            <h2>Volunteering</h2>
-        </section>
-        <section id="projects" class="mb-5">
-            <h2>Projects</h2>
-        </section>
+    <main class="container my-5">
+        <table class="table table-striped">
+            <thead>
+                <tr class="align-top">
+                    <th scope="col">
+                        <section id="volunteering" class="mb-5">
+                            <h2 class="fw-bold text-primary">Volunteering</h2>
+                        </section>
+                    </th>
+                    <th scope="col">
+                        <section id="projects" class="mb-5">
+                            <h2 class="fw-bold text-primary">Projects</h2>
+                        </section>
+                    </th>
+                </tr>
+            </thead>
+        </table>
         <section id="contact" class="mb-5">
             <h2>Contact</h2>
         </section>

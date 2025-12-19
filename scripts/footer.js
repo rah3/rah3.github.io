@@ -22,7 +22,7 @@ function renderFooter() {
                     <div class="col-md-4 mb-4">
                         <h6 class="text-uppercase fw-bold mb-3">Navigation</h6>
                         <ul class="list-unstyled small">
-                            <li><a href="#top" class="text-white-50 text-decoration-none">Back to Top</a></li>
+                            <li><a href="#name-header" class="text-white-50 text-decoration-none">Back to Top</a></li>
                             <li><a href="#education" class="text-white-50 text-decoration-none">Education</a></li>
                             <li><a href="#experience" class="text-white-50 text-decoration-none">Experience</a></li>
                         </ul>
