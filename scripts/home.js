@@ -8,7 +8,7 @@ function renderHomePage() {
             <h1 class="display-6 fw-bold mb-3 text-center"><u>Home</u></h1>
             <div class="row align-items-center py-4">
                 <div class="col-md-8">
-                    <h1>Welcome to my Portfolio</h1>
+                    <h2 class="mb-5 fw-bold text-primary">Welcome to my Portfolio</h2>
                     <p class="fs-5">
                         I am <strong>Rahie Datta</strong>, a Computer Science student at Carleton University 
                         with a passion for mastering algorithms and developing efficient software solutions. 
