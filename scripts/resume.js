@@ -39,10 +39,10 @@ function loadSkills() {
     container.innerHTML = skills.map(skill => `
         <div class="container">
             <div class="mb-4 border-start ps-3 border-primary">
-                <div class="card d-flex justify-content-between">
+                <div class="d-flex justify-content-between">
                     <div class="card-body">
-                        <h6 class="fw-bold text-primary">${skill.category}</h6>
-                        <p class="small mb-0">${skill.items}</p>
+                        <h6 class="fw-bold mb-0">${skill.category}</h6>
+                        <p class="text-secondary">${skill.items}</p>
                     </div>
                 </div>
             </div>
