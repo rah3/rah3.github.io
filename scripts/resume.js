@@ -78,8 +78,45 @@ function loadExperience() {
     if (!container) return;
 
     const experiences = [
-        { title: "Assistant Grader", company: "Kumon North America", date: "2024 - Present" },
-        { title: "Restaurant Team Member", company: "Pizza Pizza Ltd.", date: "2021 - Present" }
+        {
+            title: "Assistant Grader",
+            company: "Kumon North America",
+            date: "2024 - Present",
+            details: `
+            <ul>
+                <li>Checked, graded, and observed the students doing very precise class work and corrections</li>
+                <li>Arranged worksheets in a physical and digital manner on Class Navi (Kumon Connect platform).</li>
+                <li>Ensured that students completed their assignments fully correcting both on the worksheet and on Class Navi.</li>
+                <li>Helped and guided students when Center Policies and Kumon Method standards are applicable.</li>
+                <li>Updated the instructor with verbal or written feedback concerning student behavior or worksheet performance as deemed necessary.</li>
+            </ul>
+            `
+        },
+        {
+            title: "Restaurant Team Member",
+            company: "Pizza Pizza Ltd.",
+            date: "2021 - Present",
+            details: `
+            <ul>
+                <li>Interacted with customers in making sales transactions in a fast-paced environment</li>
+                <li>Verified the methods, processes, and standards for kitchen setup</li>
+                <li>Asked open-ended questions that could enhance feedback on customer satisfaction</li>
+            </ul>
+            `
+        },
+        {
+            title: "Assistant Coder Coach",
+            company: "Codersports Academy Inc.",
+            date: "July-August 2022",
+            details: `
+                <ul>
+                    <li>Discussed with some parents face-to-face about the skills offered at the academy to their children.</li>
+                    <li>Observed students several times when they were writing code for a certain project.</li>
+                    <li>Learned how to write game project instructions in the Markdown language through the Replit web application.</li>
+                    <li>Worked with others to meet the deadlines of projects.</li>
+                </ul>
+            `
+        }
     ];
 
     container.innerHTML = experiences.map(exp => `
@@ -89,6 +126,7 @@ function loadExperience() {
                 <span class="text-muted small">${exp.date}</span>
             </div>
             <p class="text-primary">${exp.company}</p>
+            <p class="text-secondary">${exp.details}</p>
         </div>
     `).join('');
 }
