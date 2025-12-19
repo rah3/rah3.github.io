@@ -38,8 +38,8 @@ function loadSkills() {
     // We use col-12 here so they stack within the left-hand column
     container.innerHTML = skills.map(skill => `
         <div class="container">
-            <div class="col-12 mb-3">
-                <div class="card shadow-sm border-0 bg-light">
+            <div class="mb-4 border-start ps-3 border-primary">
+                <div class="card d-flex justify-content-between">
                     <div class="card-body">
                         <h6 class="fw-bold text-primary">${skill.category}</h6>
                         <p class="small mb-0">${skill.items}</p>
