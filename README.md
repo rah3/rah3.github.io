@@ -55,4 +55,4 @@ portfolio/
 
 1. Clone the repo: `git clone https://github.com/your-username/portfolio.git`
 2. Run the server using the command `npm test`.
-3. Open `index.html` in your preferred browser.
+3. On run, click on the link to the localhost at port 3000 for testing purposes.
