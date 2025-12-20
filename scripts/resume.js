@@ -27,9 +27,45 @@ function loadObjective() {
  */
 function loadSkills() {
     const skills = [
-        { category: "Technical Skills", items: "C++, JavaScript, Python, Java" },
-        { category: "Tools", items: "Node.js, SPSS, MATLAB, Markdown" },
-        { category: "Soft Skills", items: "Accountability, Flexibility, Organization, Teamwork" }
+        {
+            category: "Technical Skills",
+            items: `
+                <ul>
+                    <li>C++;</li>
+                    <li>JavaScript;</li>
+                    <li>Python; and</li>
+                    <li>Java</li>
+                </ul>
+            `
+        },
+        {
+            category: "Tools",
+            items:
+                `
+                <ul>
+                    <li>Node.js</li>
+                    <li>SPSS</li>
+                    <li>MATLAB</li>
+                    <li>Markdown</li>
+                </ul>
+            `
+        },
+        {
+            category: "Soft Skills",
+            items:
+                `
+                <ul>
+                    <li>Accountability</li>
+                    <li>Flexibility</li>
+                    <li>Organization</li>
+                    <li>Willingness to learn and grow</li>
+                    <li>Teamwork</li>
+                    <li>Communication Skills</li>
+                    <li>Listening Skills</li>
+                    <li>Time Management</li>
+                </ul>
+            `
+        }
     ];
 
     const container = document.getElementById('skills-container');
@@ -40,9 +76,9 @@ function loadSkills() {
         <div class="container">
             <div class="mb-4 border-start ps-3 border-primary">
                 <div class="d-flex justify-content-between">
-                    <div class="card-body">
-                        <h6 class="fw-bold mb-0">${skill.category}</h6>
-                        <p class="text-secondary">${skill.items}</p>
+                    <div>
+                        <h6 class="fs-5 fw-bold mb-0">${skill.category}</h6>
+                        <p class="fs-6 text-secondary">${skill.items}</p>
                     </div>
                 </div>
             </div>
