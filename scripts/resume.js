@@ -31,9 +31,9 @@ function loadSkills() {
             category: "Technical Skills",
             items: `
                 <ul>
-                    <li>C++;</li>
-                    <li>JavaScript;</li>
-                    <li>Python; and</li>
+                    <li>C++</li>
+                    <li>JavaScript</li>
+                    <li>Python</li>
                     <li>Java</li>
                 </ul>
             `
