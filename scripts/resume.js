@@ -35,7 +35,7 @@ function loadSkills() {
         }
     ];
 
-    const container = document.getElementById('skills-container');
+    const container = document.getElementById('technical-skills-container');
     if (!container) return;
 
     // Use a clean list-based layout to maintain the LaTeX 'noitemsep' feel
