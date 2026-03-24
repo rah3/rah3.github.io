@@ -1,31 +1,32 @@
+/* --- 1. Global Styles & Typography --- */
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
+  background-color: #ffffff;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  transition: 0.3s ease-in-out;
+html {
+  scroll-behavior: smooth;
 }
 
-header {
-  background: linear-gradient(135deg, #0d6efd 0%, #003d99 100%);
-}
-
-@media (max-width: 768px) {
-  .card {
-    text-align: center;
-  }
-}
-
+/* --- 2. Headings & Links --- */
+/* Professional color palette for logical rigor */
 h1,
 h2,
 h3 {
-  color: #ff0077;
+  color: #0d6efd;
+  /* Switched to Primary Blue for a more 'Government Standard' look */
+}
+
+.display-4.font-weight-bold {
+  font-weight: bold;
+  color: #458fff;
+  /* Deep blue for high contrast and authority */
 }
 
 a {
   color: hsl(216, 98%, 52%);
+  transition: 0.2s ease-in-out;
 }
 
 a:hover {
@@ -33,25 +34,17 @@ a:hover {
   text-decoration: none;
 }
 
-#skills-section,
-#experience-section {
-  margin-top: 40px;
-}
-
-.card {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border: none;
-}
-
-.card-body {
-  padding: 20px;
+/* --- 3. Layout Components --- */
+header {
+  background: linear-gradient(135deg, #0d6efd 0%, #003d99 100%);
 }
 
 footer {
   background: #f8f9fa;
-  padding: 20px 0;
+  padding: 40px 0 20px 0;
   text-align: center;
   margin-top: 40px;
+  border-top: 1px solid #dee2e6;
 }
 
 footer p {
@@ -59,112 +52,98 @@ footer p {
   color: #6c757d;
 }
 
-#skills-container .col-md-4 {
-  display: flex;
-  justify-content: center;
+.table {
+  border-color: #003d99;
+  border-width: 1pt;
 }
 
-#experience-section .card {
+/* --- 4. Cards & Interactive Elements --- */
+/* Used for Skills, Experience, and the HintonMarket project */
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: none;
   margin-bottom: 20px;
-}
-
-#experience-section .card-body {
-  background-color: #f8f9fa;
-}
-
-nav a {
-  margin-right: 0px;
-}
-
-#skills-section .card {
-  background-color: #e9f0ff;
-}
-
-#skills-section .card-body {
-  background-color: #ffffff;
-}
-
-#experience-section .card:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   transition: 0.3s ease-in-out;
 }
 
-#experience-section h2 {
-  margin-bottom: 20px;
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-#skills-section h2 {
-  margin-bottom: 20px;
-}
-
-#skills-section .card-title {
-  font-weight: bold;
-  color: #0d6efd;
-}
-
-#skills-section .card-text {
-  color: #333333;
-}
-
-#experience-section .card-title {
-  font-weight: bold;
-  color: #0d6efd;
-}
-
-#experience-section .card-text {
-  color: #333333;
-}
-
-#experience-section .card-date {
-  font-size: 0.9em;
-  color: #6c757d;
-  margin-bottom: 10px;
-}
-
-/* Additional styles can be added here */
-.display-4.font-weight-bold {
-  font-weight: bold;
-  color: #ffaed4;
-}
-
-@media screen and (min-width: 480px) and (max-width: 768px) {
-  body {
-    background-color: #ffffff;
-  }
-}
-
-#volunteering {
-  flex: content;
-  flex-wrap: wrap-reverse;
-}
-
-html {
-  scroll-behavior: smooth;
+.card-body {
+  padding: 20px;
+  background-color: #ffffff;
 }
 
 .card-title {
-  color: #458fff;
+  font-weight: bold;
+  color: #0d6efd;
 }
 
-.table {
-  border-color: #003d99;
-  border-style: 1pt;
+.card-text {
+  color: #333333;
 }
 
-#btn-back-to-top {
-  position: fixed;
-  bottom: 20px;
-  left: 80%;
-  display: none; /* Hidden by default */
-  z-index: 1000;
-  border-radius: 50%; /* Circular button */
-}
-
+/* --- 5. Navigation Buttons --- */
+#btn-back-to-top,
 #btn-go-to-bottom {
   position: fixed;
   bottom: 20px;
-  left: 90%;
-  display: none; /* Hidden by default */
   z-index: 1000;
-  border-radius: 50%; /* Circular button */
+  display: none;
+  /* Controlled by scrollOperations.js */
+  border-radius: 50%;
+}
+
+#btn-back-to-top {
+  right: 80px;
+  /* Using right instead of left for better mobile scaling */
+}
+
+#btn-go-to-bottom {
+  right: 20px;
+}
+
+/* --- 6. Mobile Responsiveness --- */
+@media (max-width: 768px) {
+  .card {
+    text-align: center;
+  }
+
+  #btn-back-to-top {
+    right: 70px;
+  }
+}
+
+#skills-section,
+#experience-section {
+  margin-top: 15px;
+  /* Reduced from 40px */
+}
+
+footer {
+  background: #f8f9fa;
+  padding: 15px 0;
+  /* Reduced padding */
+  text-align: center;
+  margin-top: 20px;
+  /* Reduced from 40px */
+}
+
+#volunteering-container:empty,
+#projects-container:empty,
+#contact-container:empty {
+  display: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container.my-5 {
+  margin-top: 1.5rem !important;
+  /* Overrides Bootstrap's large top margin */
+  margin-bottom: 1.5rem !important;
 }

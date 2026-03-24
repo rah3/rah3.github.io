@@ -5,6 +5,9 @@ function renderContactPage() {
     contactContainer.innerHTML = `
         <div class="container my-5 py-4 border-top">
             <h1 class="display-6 fw-bold mb-5 text-center"><u>Contact Me</u></h1>
+            <div class="text-center mb-5">
+                <p class="fs-5 text-muted">I am always open to discussing technical logic, software architecture, or co-op opportunities.</p>
+            </div>
             <div class="row justify-content-center text-center g-4">
                 <div class="col-md-4">
                     <div class="card h-100 border-0 shadow-sm">
@@ -30,7 +33,7 @@ function renderContactPage() {
                     <div class="card h-100 border-0 shadow-sm">
                         <div class="card-body">
                             <h5 class="card-title text-primary fw-bold">GitHub</h5>
-                            <p class="card-text text-muted small">Explore my source code and technical projects.</p>
+                            <p class="card-text text-muted small">Explore my source code, including the HintonMarket system.</p>
                             <a href="https://github.com/rah3" target="_blank" class="btn btn-outline-primary">Visit GitHub</a>
                         </div>
                     </div>
