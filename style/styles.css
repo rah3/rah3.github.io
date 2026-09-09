@@ -1,8 +1,18 @@
 /* --- 1. Global Styles & Typography --- */
+:root {
+  --resume-primary: #0d6efd; /* Bootstrap blue for web, LaTeX uses #E91C24 for PDF */
+  --resume-primary-dark: #003d99;
+  --resume-muted: #6c757d;
+  --resume-border: #dee2e6;
+}
+
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  color: #212529;
 }
 
 html {
@@ -10,65 +20,68 @@ html {
 }
 
 /* --- 2. Headings & Links --- */
-/* Professional color palette for logical rigor */
-h1,
-h2,
-h3 {
-  color: #0d6efd;
-  /* Switched to Primary Blue for a more 'Government Standard' look */
-}
-
-.display-4.font-weight-bold {
-  font-weight: bold;
-  color: #458fff;
-  /* Deep blue for high contrast and authority */
+h1, h2, h3, h5 {
+  color: var(--resume-primary);
 }
 
 a {
   color: hsl(216, 98%, 52%);
-  transition: 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
 a:hover {
-  color: #003d99;
+  color: var(--resume-primary-dark);
   text-decoration: none;
 }
 
-/* --- 3. Layout Components --- */
+/* --- 3. Header (if you use one) --- */
 header {
-  background: linear-gradient(135deg, #0d6efd 0%, #003d99 100%);
+  background: linear-gradient(135deg, var(--resume-primary) 0%, var(--resume-primary-dark) 100%);
 }
 
-footer {
-  background: #f8f9fa;
-  padding: 40px 0 20px 0;
-  text-align: center;
-  margin-top: 40px;
-  border-top: 1px solid #dee2e6;
+/* Footer is rendered via footer.js as bg-dark, don't override it here */
+#main-footer {
+  margin-top: 3rem;
 }
 
-footer p {
-  margin: 0;
-  color: #6c757d;
+/* --- 4. Resume Sections - matches resume.js / home.js --- */
+#top,
+#objective-container,
+#education-container,
+#skills-container,
+#experience-container,
+#projects-container,
+#honors-container,
+#volunteer-container {
+  scroll-margin-top: 80px; /* for anchor links */
 }
 
-.table {
-  border-color: #003d99;
-  border-width: 1pt;
+#objective-container .fst-italic,
+#education-container,
+#skills-container,
+#experience-container,
+#projects-container,
+#honors-container {
+  background-color: #ffffff;
 }
 
-/* --- 4. Cards & Interactive Elements --- */
-/* Used for Skills, Experience, and the HintonMarket project */
+/* Card style consistent with rajnasit.dev */
+.border-start.border-primary {
+  border-width: 4px !important;
+}
+
+/* --- 5. Cards & Interactive Elements --- */
 .card {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--resume-border);
   margin-bottom: 20px;
-  transition: 0.3s ease-in-out;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border-radius: 8px;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
 }
 
 .card-body {
@@ -77,73 +90,107 @@ footer p {
 }
 
 .card-title {
-  font-weight: bold;
-  color: #0d6efd;
+  font-weight: 700;
+  color: var(--resume-primary);
 }
 
-.card-text {
-  color: #333333;
-}
-
-/* --- 5. Navigation Buttons --- */
+/* --- 6. Navigation Buttons (Back to Top / Go to Bottom) --- */
 #btn-back-to-top,
 #btn-go-to-bottom {
   position: fixed;
-  bottom: 20px;
-  z-index: 1000;
-  display: none;
-  /* Controlled by scrollOperations.js */
+  bottom: 24px;
+  z-index: 1050;
+  display: none; /* controlled by scrollOperations.js */
+  opacity: 0;
   border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  line-height: 44px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 #btn-back-to-top {
-  right: 80px;
-  /* Using right instead of left for better mobile scaling */
+  right: 78px;
 }
 
 #btn-go-to-bottom {
   right: 20px;
 }
 
-/* --- 6. Mobile Responsiveness --- */
+#btn-back-to-top:hover,
+#btn-go-to-bottom:hover {
+  transform: translateY(-2px);
+}
+
+/* --- 7. Lists inside resume --- */
+#experience-container ul,
+#projects-container ul,
+#honors-container ul,
+#skills-container ul {
+  padding-left: 1.2rem;
+}
+
+#experience-container li,
+#projects-container li {
+  margin-bottom: 6px;
+}
+
+/* --- 8. Section Spacing --- */
+.container.my-3,
+.container.my-4,
+.container.my-5 {
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+/* --- 9. Hide Empty Containers - matches actual IDs --- */
+#objective-container:empty,
+#education-container:empty,
+#skills-container:empty,
+#experience-container:empty,
+#projects-container:empty,
+#honors-container:empty,
+#volunteer-container:empty,
+#volunteering-container:empty,
+#contact-container:empty {
+  display: none !important;
+}
+
+/* --- 10. Mobile Responsiveness --- */
 @media (max-width: 768px) {
   .card {
-    text-align: center;
+    text-align: left;
   }
 
   #btn-back-to-top {
     right: 70px;
+    bottom: 20px;
+  }
+
+  #btn-go-to-bottom {
+    right: 16px;
+    bottom: 20px;
+  }
+
+  #top {
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
 
-#skills-section,
-#experience-section {
-  margin-top: 15px;
-  /* Reduced from 40px */
-}
 
-footer {
-  background: #f8f9fa;
-  padding: 15px 0;
-  /* Reduced padding */
-  text-align: center;
-  margin-top: 20px;
-  /* Reduced from 40px */
+/* --- Header --- */
+#main-header .navbar {
+    padding: 0.6rem 0;
 }
-
-#volunteering-container:empty,
-#projects-container:empty,
-#contact-container:empty {
-  display: none;
+#main-header .navbar-brand img {
+    object-fit: cover;
 }
-
-body {
-  margin: 0;
-  padding: 0;
-}
-
-.container.my-5 {
-  margin-top: 1.5rem !important;
-  /* Overrides Bootstrap's large top margin */
-  margin-bottom: 1.5rem !important;
+#main-header .nav-link.active {
+    color: #fff !important;
+    font-weight: 600;
+    border-bottom: 2px solid var(--resume-primary);
 }

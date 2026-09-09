@@ -1,209 +1,187 @@
-/**
- * Dynamically loads the objective section into the HTML document.
- */
 function loadObjective() {
     const container = document.getElementById('objective-container');
+    if (!container) return;
     const objectiveText = `
-        To utilize my logical rigor and high academic standing in a Software Engineering or Data Analysis co-op. I am focused on delivering functional MVPs through disciplined practice and robust architectural patterns like BCE.
+        I am a fourth-year Computer Science student applying through FSWEP and EOSD, focused on software engineering,
+        database systems, and data integrity. I am interested in roles supporting public safety, regulatory systems,
+        IT operations, and scientific informatics. I work best in structured workflows with clear documentation and
+        remote or asynchronous environments.
     `;
-
     container.innerHTML = `
         <div class="bg-white">
-            <p class="fst-italic mb-0">
-                ${objectiveText.trim()}
+            <p class="fst-italic mb-0">${objectiveText.trim()}</p>
+        </div>
+    `;
+}
+
+function loadEducation() {
+    const container = document.getElementById('education-container');
+    if (!container) return;
+    container.innerHTML = `
+        <div class="p-3 bg-white border-start border-primary border-4 shadow-sm">
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                <h5 class="fw-bold mb-0">Bachelor of Computer Science (BCS), Minor in Mathematics</h5>
+                <span class="text-muted small">Expected Graduation: 2027</span>
+            </div>
+            <p class="text-primary mt-1 mb-2">Carleton University — Ottawa, Ontario</p>
+            <p class="small mb-0">
+                <strong>Relevant Coursework:</strong> Database Management Systems, Web Applications,
+                Software Engineering, Data Structures, Linear Algebra, Calculus.
             </p>
         </div>
     `;
 }
 
-/**
- * Dynamically loads the skills section into the HTML document.
- */
 function loadSkills() {
+    const container = document.getElementById('skills-container');
+    if (!container) return;
     const skills = [
-        {
-            category: "Programming Languages",
-            items: "C++, LaTeX, JavaScript, Python, Java, SQL"
-        },
-        {
-            category: "Frameworks and Tools",
-            items: "Handlebars, Node.js, Express.js, Git, Replit, SPSS, MATLAB, Qt Creator"
-        },
-        {
-            category: "Concepts",
-            items: "Memory Management, Systems Programming, IEEE 754 Floating-Point Arithmetic, Probability Theory, Mathematical Modeling"
-        }
+        { label: "Languages", value: "Python, SQL, C++, C, Java, JavaScript, HTML/CSS, MATLAB, LaTeX" },
+        { label: "Backend & Systems", value: "Relational Database Design, ETL Pipelines, REST APIs, Linux/Unix" },
+        { label: "Frontend & UI", value: "Modular JavaScript, Responsive Layouts, CSS Architecture" },
+        { label: "Data & Analytics", value: "Power BI, Data Modeling, Data Integrity, Structured Pipelines" },
+        { label: "Developer Tools", value: "Git/GitHub, VS Code, Node.js, Bash, TeXstudio" },
+        { label: "Regulatory Alignment", value: "Documentation accuracy, standardized evaluation, compliance-focused workflows" }
     ];
-
-    const container = document.getElementById('technical-skills-container');
-    if (!container) return;
-
-    // Use a clean list-based layout to maintain the LaTeX 'noitemsep' feel
-    container.innerHTML = skills.map(skill => `
-        <div class="mb-4 border-start ps-3 border-primary">
-            <h6 class="fs-5 fw-bold mb-1">${skill.category}</h6>
-            <p class="fs-6 text-secondary mb-0">${skill.items}</p>
-        </div>
-    `).join('');
-}
-
-/**
- * Loads education details into the education section.
- */
-function loadEducation() {
-    const container = document.getElementById('education-container');
-    if (!container) return;
-
     container.innerHTML = `
         <div class="p-3 bg-white border-start border-primary border-4 shadow-sm">
-            <div class="d-flex justify-content-between align-items-center">
-                <h5 class="fw-bold mb-0">Bachelor of Computer Science with Minor in Mathematics</h5>
-                <span class="text-muted small">2021 - Present</span>
-            </div>
-            <p class="text-primary mt-1 mb-2">Carleton University</p>
-            <p class="mb-1"><strong>CGPA: 9.34 / 12 (B+)</strong> | Fourth Year Standing</p>
-            <p class="small"><em>Key Courses</em>: Object-Oriented Software Engineering (COMP 3004), Database Management Systems (COMP 3005), Discrete Structures, Abstract Data Types and Algorithms</p>    
+            <ul class="list-unstyled mb-0 small">
+                ${skills.map(s => `<li class="mb-1"><strong>${s.label}:</strong> ${s.value}</li>`).join('')}
+            </ul>
         </div>
     `;
 }
 
-
-/**
- * Loads project details into the projects section
- * Featuring COMP 3005 and COMP 2404 coursework
- */
-function loadProjects() {
-    const projects = [
+function loadExperience() {
+    const container = document.getElementById('experience-container');
+    if (!container) return;
+    const experiences = [
         {
-            title: "Professional Portfolio (Web Development)",
-            course: "Personal Hobby & Professional Development",
-            date: "December 2024 - Present",
+            title: "Restaurant Worker",
+            company: "Pizza Pizza Limited — Smiths Falls, Ontario",
+            date: "Aug 2021 — Present",
             details: `
                 <ul>
-                    <li>Engineered a responsive, high-performance personal portfolio using a modular JavaScript architecture to dynamically render academic and professional content.</li>
-                    <li>Implemented a "Zero-AI Prose" logic-first design philosophy, prioritizing technical clarity and structured data representation over generic templates.</li>
-                    <li>Optimized user navigation by developing custom scroll operations and a consolidated CSS framework for cross-device consistency.</li>
+                    <li>Worked in a fast-paced service environment, applied strict procedural and safety standards, resulted in consistently accurate order preparation and compliance with food-safety requirements.</li>
+                    <li>Managed high-volume customer periods, executed rapid and precise workflows, resulted in reduced wait times and improved customer satisfaction.</li>
+                    <li>Operated within a team-based environment, coordinated inventory and workspace organization, resulted in smoother daily operations and minimized workflow disruptions.</li>
                 </ul>
             `
         },
         {
-            title: "Telecommunications Switching Database (SQL)",
-            course: "Database Management Systems (COMP 3005)",
-            date: "February 2026",
-            details: "Executed complex relational queries and implemented hierarchical trunk routing logic using SQLite."
-        },
-        {
-            title: "Distributed Version Control System (C++)",
-            course: "Introduction to Software Engineering (COMP 2404)",
-            date: "October 2024",
-            details: "Developed a multi-tier metadata management system with zero memory leaks using linked structures."
-        }
-    ];
-
-    const container = document.getElementById('projects-container');
-    if (!container) return;
-
-    container.innerHTML = projects.map(p => `
-        <div class="mb-4 border-start ps-3 border-primary">
-            <div class="d-flex justify-content-between">
-                <strong class="text-dark">${p.title}</strong>
-                <span class="text-muted small">${p.date}</span>
-            </div>
-            <p class="text-primary mb-1 small">${p.course}</p>
-            <p class="text-secondary small mb-0">${p.details}</p>
-        </div>
-    `).join('');
-}
-
-/**
- * Loads work experience details into the experience section.
- */
-/**
- * Loads work experience details with SAR-formatted bullet points.
- */
-function loadExperience() {
-    const container = document.getElementById('experience-container');
-    if (!container) return;
-
-    const experiences = [
-        {
-            title: "Assistant Grader",
-            company: "Kumon North America",
-            date: "2024 - Present",
+            title: "Center Assistant and Grader",
+            company: "Kumon North America, Inc. — Stittsville, Ontario",
+            date: "Aug 2024 — Present",
             details: `
-            <ul>
-                <li>Optimized student learning outcomes by meticulously grading and observing precise class work to ensure 100% accuracy in error correction.</li>
-                <li>Enhanced operational efficiency by managing worksheet logistics through the Kumon Connect platform, facilitating a seamless transition between physical and digital learning materials.</li>
-                <li>Supported instructional quality by providing data-driven feedback on student behavior and performance metrics to tailor individualized learning plans.</li>
-            </ul>
+                <ul>
+                    <li>Supported a large cohort requiring accurate academic evaluation, applied standardized rubrics, resulted in consistent and reliable performance tracking.</li>
+                    <li>Assisted students with varying reading proficiency, delivered structured oral assessments, resulted in measurable improvements in comprehension and fluency.</li>
+                    <li>Worked within a standardized instructional framework, provided individualized guidance, resulted in stronger self-directed learning outcomes.</li>
+                    <li>Observed diverse learning patterns, documented detailed performance notes, resulted in targeted curriculum adjustments by instructors.</li>
+                </ul>
             `
         },
         {
-            title: "Restaurant Team Member",
-            company: "Pizza Pizza Ltd.",
-            date: "2021 - Present",
+            title: "Assistant Coder Coach",
+            company: "Coder Sports Academy — Kanata, Ontario",
+            date: "Jul 2022 — Aug 2022",
             details: `
-            <ul>
-                <li>Maintained high service standards in a high-volume environment by managing rapid sales transactions while consistently achieving positive customer satisfaction ratings.</li>
-                <li>Ensured total regulatory compliance by verifying kitchen setup protocols and rigorous food safety standards, mitigating operational risks during peak hours.</li>
-            </ul>
+                <ul>
+                    <li>Supported onboarding for youth coding programs, communicated program details to parents, resulted in clearer expectations and improved engagement.</li>
+                    <li>Maintained a safe and organized learning environment, performed administrative and facility tasks, resulted in smooth daily operations.</li>
+                    <li>Participated in team-based instructional initiatives, collaborated on group teaching activities, resulted in strengthened program delivery and alignment with organizational goals.</li>
+                </ul>
+            `
+        },
+        {
+            title: "Center Assistant Grader",
+            company: "Kumon North America, Inc. — Nepean, Ontario",
+            date: "Aug 2018 — Jun 2020",
+            details: `
+                <ul>
+                    <li>Managed high assignment volumes requiring standardized grading, applied strict marking guidelines, resulted in consistent academic standards across the center.</li>
+                    <li>Required accurate student progress tracking, recorded daily performance metrics, resulted in reliable data for monitoring academic growth.</li>
+                    <li>Supported peak operational periods, maintained organized grading workflows, resulted in reduced turnaround times and improved center efficiency.</li>
+                    <li>Identified students experiencing academic challenges, escalated concerns to instructors, resulted in timely intervention and improved learning outcomes.</li>
+                </ul>
             `
         }
     ];
-
     container.innerHTML = experiences.map(exp => `
         <div class="mb-4 border-start ps-3 border-primary">
             <div class="d-flex justify-content-between">
                 <h5 class="fw-bold mb-0">${exp.title}</h5>
                 <span class="text-muted small">${exp.date}</span>
             </div>
-            <p class="text-primary mb-1">${exp.company}</p>
+            <p class="text-primary mb-1 small">${exp.company}</p>
             <div class="text-secondary small">${exp.details}</div>
         </div>
     `).join('');
 }
 
-/**
- * Loads details regarding volunteering into the volunteer experience section.
- */
-function loadVolunteerExperience() {
-    const volunteerExperience = [
+function loadProjects() {
+    const container = document.getElementById('projects-container');
+    if (!container) return;
+    const projects = [
         {
-            role: "Volunteer Notetaker",
-            org: "Paul Menton Centre at Carleton University",
-            date: "May 2024 - April 2025",
-            desc: "Provided detailed technical notes for students with disabilities to support their learning."
+            title: "Telecommunications Switching Database",
+            date: "Jan 2026 — Feb 2026",
+            details: `
+                <ul>
+                    <li>Addressed complex telecommunications routing requirements, designed a relational database with hierarchical trunk preferences, resulted in accurate modeling of call‑termination logic.</li>
+                    <li>Required precise mapping of dialed digits, executed SQL queries using directory number and area code matching, resulted in reliable routing outputs aligned with telecom standards.</li>
+                    <li>Encountered disparate data sources, engineered an idempotent SQLite assembly script, resulted in consistent and integrity‑preserving data consolidation.</li>
+                </ul>
+            `
         },
         {
-            role: "Volunteer",
-            org: "Ausome Ottawa",
-            date: "November 2019 - June 2023",
-            desc: "Assisted children with autism spectrum disorder (ASD) in physical activities including soccer and yoga."
+            title: "Professional Software Portfolio",
+            date: "Dec 2025 — Present",
+            details: `
+                <ul>
+                    <li>Built a responsive personal portfolio, implemented modular JavaScript and unified CSS architecture, resulted in deterministic content generation across devices.</li>
+                    <li>Applied a logic-first design philosophy, emphasized structural clarity and documentation, resulted in improved maintainability and readability.</li>
+                    <li>Enhanced navigation performance, implemented custom scroll operations and modular layout, resulted in a smoother user experience and faster responsiveness.</li>
+                </ul>
+            `
         }
     ];
-
-    const container = document.getElementById('volunteering-container');
-    if (!container) return;
-
-    container.innerHTML = volunteerExperience.map(v => `
+    container.innerHTML = projects.map(p => `
         <div class="mb-4 border-start ps-3 border-primary">
             <div class="d-flex justify-content-between">
-                <strong class="text-dark">${v.role}</strong>
-                <span class="text-muted small">${v.date}</span>
+                <strong class="text-dark">${p.title}</strong>
+                <span class="text-muted small">${p.date}</span>
             </div>
-            <p class="text-primary mb-1 small">${v.org}</p>
-            <p class="text-secondary small mb-0">${v.desc}</p>
+            <div class="text-secondary small">${p.details}</div>
         </div>
     `).join('');
 }
 
-var functor = () => {
-    loadObjective();
-    loadSkills();
-    loadEducation();
-    loadExperience();
-    loadVolunteerExperience();
-    loadProjects();
+function loadHonors() {
+    const container = document.getElementById('honors-container') || document.getElementById('volunteer-container');
+    if (!container) return;
+    container.innerHTML = `
+        <div class="p-3 bg-white border-start border-primary border-4 shadow-sm">
+            <ul class="small mb-0">
+                <li><strong>Grade 11 Honour Society Award</strong> (2021) — Achieved an average of 80%+ across Grades 9–11.</li>
+                <li><strong>Grade 10 Honour Society</strong> (2020) — Achieved an average of 80%+ across Grades 9–11.</li>
+                <li><strong>Mathematics Silver Award</strong> (2018) — Earned the K-Level Kumon Math Certificate, reaching an advanced national ranking.</li>
+            </ul>
+        </div>
+    `;
 }
+
+function loadVolunteerExperience() {
+    return loadHonors();
+}
+
+var functor = function() {
+    loadObjective();
+    loadEducation();
+    loadSkills();
+    loadExperience();
+    loadProjects();
+    loadHonors();
+};
 
 document.addEventListener('DOMContentLoaded', functor);

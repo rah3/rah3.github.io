@@ -1,46 +1,71 @@
 /**
  * scrollOperations.js
- * Manages both Back-to-Top and Go-to-Bottom visibility and logic.
+ * Manages Back-to-Top and Go-to-Bottom visibility and smooth scrolling.
+ * Matched to resume.js / home.js / footer.js IDs
  */
 
 let backToTopBtn;
 let goToBottomBtn;
 
-window.addEventListener('DOMContentLoaded', () => {
-    // 1. Initialize button references
+function initScrollButtons() {
     backToTopBtn = document.getElementById("btn-back-to-top");
     goToBottomBtn = document.getElementById("btn-go-to-bottom");
 
-    // 2. Back to Top Click Event
     if (backToTopBtn) {
         backToTopBtn.addEventListener("click", () => {
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
     }
 
-    // 3. Go to Bottom Click Event
     if (goToBottomBtn) {
         goToBottomBtn.addEventListener("click", () => {
-            const footer = document.getElementById('main-footer');
+            // Scroll to your actual footer container
+            const footer = document.getElementById('main-footer') || document.getElementById('honors-container');
             if (footer) {
-                footer.scrollIntoView({ behavior: 'smooth' });
+                footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
             }
         });
     }
-});
 
-// 4. Combined Scroll Listener
-window.onscroll = () => {
-    const scrollPos = document.body.scrollTop || document.documentElement.scrollTop;
-    const isAtBottom = (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 50;
+    updateButtonVisibility();
+}
 
-    // Logic for Back to Top (Show when scrolled down 150px)
+function updateButtonVisibility() {
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const viewportHeight = window.innerHeight;
+    const fullHeight = document.documentElement.scrollHeight;
+    const isNearBottom = viewportHeight + scrollY >= fullHeight - 100;
+
     if (backToTopBtn) {
-        backToTopBtn.style.display = (scrollPos > 150) ? "block" : "none";
+        // Show after 200px, same as rajnasit.dev portfolio pattern
+        backToTopBtn.style.display = scrollY > 200 ? "block" : "none";
+        backToTopBtn.style.opacity = scrollY > 200 ? "1" : "0";
     }
 
-    // Logic for Go to Bottom (Hide when already at the footer)
     if (goToBottomBtn) {
-        goToBottomBtn.style.display = (scrollPos > 50 && !isAtBottom) ? "block" : "none";
+        // Show when scrolled a bit, hide when at bottom
+        const shouldShow = scrollY > 100 && !isNearBottom;
+        goToBottomBtn.style.display = shouldShow ? "block" : "none";
+        goToBottomBtn.style.opacity = shouldShow ? "1" : "0";
     }
-};
+}
+
+// Use addEventListener instead of window.onscroll (which overwrites other listeners)
+let ticking = false;
+function onScroll() {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            updateButtonVisibility();
+            ticking = false;
+        });
+        ticking = true;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initScrollButtons();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', updateButtonVisibility, { passive: true });
+});
