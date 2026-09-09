@@ -1,15 +1,16 @@
 {
-  "name": "portfolio",
+  "name": "rah3-portfolio",
   "version": "1.0.0",
-  "description": "A personal portfolio website showcasing projects and skills.",
-  "main": "script.js",
+  "private": true,
+  "description": "Rahie Datta — FSWEP/EOSD Portfolio (GitHub Pages ready)",
   "scripts": {
-    "test": "node server.js"
+    "start": "npx serve . -l 3000",
+    "dev": "npx serve . -l 3000"
   },
-  "keywords": [],
-  "author": "Rahie Datta",
-  "license": "ISC",
+  "devDependencies": {
+    "serve": "^14.2.0"
+  },
   "dependencies": {
-    "express": "^5.2.1"
+    "bootstrap": "^5.3.8"
   }
 }
