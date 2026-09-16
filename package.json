@@ -1,8 +1,8 @@
 {
   "name": "rahiedatta.dev",
   "version": "1.0.0",
-  "description": "Rahie Datta \u2014 Vanilla JS OOP (COMP 2406 Dr. Louis D. Nel) \u2014 Calibri",
-  "homepage": "https://rahiedatta.dev",
+  "description": "Rahie Datta \u2014 Vanilla JS OOP (COMP 2406 Dr. Louis D. Nel) \u2014 Calibri \u2014 rahiedatta.dev/rahiedatta.dev",
+  "homepage": "https://rahiedatta.dev/rahiedatta.dev",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",

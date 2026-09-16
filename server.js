@@ -11,4 +11,6 @@ app.get('*', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Rahie Datta portfolio — OOP COMP 2406 — http://localhost:${PORT}`);
+  console.log(`Repo: https://github.com/rahiedatta.dev/rahiedatta.dev`);
+  console.log(`Pages: https://rahiedatta.dev/rahiedatta.dev`);
 });
