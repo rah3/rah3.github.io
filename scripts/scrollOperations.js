@@ -1,71 +1,53 @@
-/**
- * scrollOperations.js
- * Manages Back-to-Top and Go-to-Bottom visibility and smooth scrolling.
- * Matched to resume.js / home.js / footer.js IDs
- */
+// scrollOperations.js - Custom scroll operations and modular layout performance
+// Enhances navigation performance, implements active tracking and smooth scroll
 
-let backToTopBtn;
-let goToBottomBtn;
+export function initScrollOperations() {
+    const nav = document.getElementById('main-nav');
+    const buttons = nav ? [...nav.querySelectorAll('button')] : [];
+    const sectionMap = {
+        objective: document.getElementById('objective'),
+        education: document.getElementById('section-education'),
+        skills: document.getElementById('section-skills'),
+        experience: document.getElementById('section-experience'),
+        projects: document.getElementById('section-projects'),
+        awards: document.getElementById('section-awards'),
+        contact: document.getElementById('section-contact')
+    };
 
-function initScrollButtons() {
-    backToTopBtn = document.getElementById("btn-back-to-top");
-    goToBottomBtn = document.getElementById("btn-go-to-bottom");
-
-    if (backToTopBtn) {
-        backToTopBtn.addEventListener("click", () => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-    }
-
-    if (goToBottomBtn) {
-        goToBottomBtn.addEventListener("click", () => {
-            // Scroll to your actual footer container
-            const footer = document.getElementById('main-footer') || document.getElementById('honors-container');
-            if (footer) {
-                footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } else {
-                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    // Smooth scroll
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.dataset.target;
+            const el = sectionMap[target];
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
-    }
+    });
 
-    updateButtonVisibility();
-}
-
-function updateButtonVisibility() {
-    const scrollY = window.scrollY || document.documentElement.scrollTop;
-    const viewportHeight = window.innerHeight;
-    const fullHeight = document.documentElement.scrollHeight;
-    const isNearBottom = viewportHeight + scrollY >= fullHeight - 100;
-
-    if (backToTopBtn) {
-        // Show after 200px, same as rajnasit.dev portfolio pattern
-        backToTopBtn.style.display = scrollY > 200 ? "block" : "none";
-        backToTopBtn.style.opacity = scrollY > 200 ? "1" : "0";
-    }
-
-    if (goToBottomBtn) {
-        // Show when scrolled a bit, hide when at bottom
-        const shouldShow = scrollY > 100 && !isNearBottom;
-        goToBottomBtn.style.display = shouldShow ? "block" : "none";
-        goToBottomBtn.style.opacity = shouldShow ? "1" : "0";
-    }
-}
-
-// Use addEventListener instead of window.onscroll (which overwrites other listeners)
-let ticking = false;
-function onScroll() {
-    if (!ticking) {
-        window.requestAnimationFrame(() => {
-            updateButtonVisibility();
-            ticking = false;
+    // Active observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.id.replace('section-','');
+                // special case objective
+                const key = entry.target.id === 'objective' ? 'objective' : id;
+                buttons.forEach(b => b.classList.toggle('active', b.dataset.target === key));
+            }
         });
-        ticking = true;
-    }
-}
+    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    initScrollButtons();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', updateButtonVisibility, { passive: true });
-});
+    Object.values(sectionMap).forEach(sec => {
+        if (sec) observer.observe(sec);
+    });
+
+    // Nav shadow on scroll
+    let lastY = window.scrollY;
+    window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        if (nav) {
+            nav.style.boxShadow = y > 10 ? '0 4px 12px rgba(0,0,0,0.06)' : 'none';
+        }
+        lastY = y;
+    }, { passive: true });
+}
