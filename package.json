@@ -1,16 +1,17 @@
 {
-  "name": "rah3-portfolio",
+  "name": "rahiedatta.dev",
   "version": "1.0.0",
-  "private": true,
-  "description": "Rahie Datta — FSWEP/EOSD Portfolio (GitHub Pages ready)",
+  "description": "Rahie Datta \u2014 Vanilla JS OOP (COMP 2406 Dr. Louis D. Nel) \u2014 Calibri",
+  "homepage": "https://rahiedatta.dev",
+  "main": "server.js",
   "scripts": {
-    "start": "npx serve . -l 3000",
-    "dev": "npx serve . -l 3000"
-  },
-  "devDependencies": {
-    "serve": "^14.2.0"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "dependencies": {
-    "bootstrap": "^5.3.8"
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   }
 }
