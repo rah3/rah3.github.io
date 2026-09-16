@@ -1,10 +1,13 @@
-// header.js - Modular header generation, deterministic content
+// header.js - uses images/ folder: logo.png + profile.jpg
 export function renderHeader(rootId) {
     const root = document.getElementById(rootId);
     if (!root) return;
     root.innerHTML = `
         <header class="site-header">
-            <img src="./logo.png" alt="Rahie Datta logo" class="header-logo" />
+            <div class="header-top">
+                <img src="./images/logo.png" alt="RD logo" class="header-logo" />
+                <img src="./images/profile.jpg" alt="Rahie Datta" class="header-profile" onerror="this.style.display='none'" />
+            </div>
             <h1 class="site-title">Rahie Datta</h1>
             <div class="contact-line">
                 <span>Ottawa, Ontario</span>

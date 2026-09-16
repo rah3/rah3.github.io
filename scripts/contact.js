@@ -1,9 +1,9 @@
-// contact.js - Contact module, compliance-focused workflows
+// contact.js - Contact module with #contact-container anchor
 export function renderContact(rootId) {
     const root = document.getElementById(rootId);
     if (!root) return;
     root.innerHTML = `
-        <div class="resume-section" id="section-contact">
+        <div class="resume-section" id="contact-container">
             <h2 class="resume-section-header">Contact</h2>
             <div class="resume-body">
                 <div class="contact-card">

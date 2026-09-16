@@ -4,42 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rahie Datta | Portfolio</title>
-    <link rel="icon" type="image/png" href="./logo.png">
+    <link rel="icon" href="./images/favicon.ico">
+    <link rel="icon" type="image/png" href="./images/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./style/styles.css">
 </head>
 <body>
     <div id="header-root"></div>
-    <nav id="main-nav" class="main-nav">
+    <nav id="main-nav" class="main-nav" aria-label="Primary navigation">
         <div class="nav-inner">
-            <button data-target="objective">Objective</button>
-            <button data-target="education">Education</button>
-            <button data-target="skills">Technical Skills</button>
-            <button data-target="experience">Experience</button>
-            <button data-target="projects">Projects</button>
-            <button data-target="awards">Honors & Awards</button>
-            <button data-target="contact">Contact</button>
+            <a href="#objective-container" data-target="objective-container">Objective</a>
+            <a href="#education-container" data-target="education-container">Education</a>
+            <a href="#skills-container" data-target="skills-container">Skills</a>
+            <a href="#experience-container" data-target="experience-container">Experience</a>
+            <a href="#projects-container" data-target="projects-container">Projects</a>
+            <a href="#awards-container" data-target="awards-container">Awards</a>
+            <a href="#contact-container" data-target="contact-container">Contact</a>
         </div>
     </nav>
     <main id="main-content">
-        <section id="home-root"></section>
         <section id="resume-root"></section>
         <section id="contact-root"></section>
     </main>
     <div id="footer-root"></div>
 
     <script type="module">
-        import { renderHeader } from './header.js';
-        import { renderFooter } from './footer.js';
-        import { renderHome } from './home.js';
-        import { renderResume } from './resume.js';
-        import { renderContact } from './contact.js';
-        import { initScrollOperations } from './scrollOperations.js';
+        import { renderHeader } from './scripts/header.js';
+        import { renderFooter } from './scripts/footer.js';
+        import { renderResume } from './scripts/resume.js';
+        import { renderContact } from './scripts/contact.js';
+        import { initScrollOperations } from './scripts/scrollOperations.js';
 
         renderHeader('header-root');
-        renderHome('home-root');
         renderResume('resume-root');
         renderContact('contact-root');
         renderFooter('footer-root');

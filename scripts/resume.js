@@ -1,5 +1,6 @@
 // resume.js - Single source of truth for resume data
 // Mirrors RD_FSWEP_2026_Resume.pdf exactly - structured pipelines, data integrity
+// IDs updated to match live site: #education-container etc for direct linking https://rah3.github.io/#education-container
 
 const resumeData = {
     objective: `I am a fourth-year Computer Science student applying through FSWEP and EOSD, focused on software engineering, database systems, and data integrity. Interested in roles supporting public safety, regulatory systems, IT operations, and scientific informatics. Strong preference for structured workflows, clear documentation, and remote or asynchronous environments.`,
@@ -111,16 +112,21 @@ function el(tag, className, html) {
 export function renderResume(rootId) {
     const root = document.getElementById(rootId);
     if (!root) return;
-
     root.innerHTML = "";
 
-    // Objective is rendered in home.js, but also duplicate here for resume-only view
-    const eduSec = el('div','resume-section');
-    eduSec.id = 'section-education';
-    eduSec.innerHTML = `
+    // Objective - now with live ID
+    const objSec = el('div','resume-section');
+    objSec.id = 'objective-container';
+    objSec.innerHTML = `
         <h2 class="resume-section-header">Objective</h2>
         <div class="resume-body"><p class="objective-text">${resumeData.objective}</p></div>
-        <div style="height:28px"></div>
+    `;
+    root.appendChild(objSec);
+
+    // Education
+    const eduSec = el('div','resume-section');
+    eduSec.id = 'education-container';
+    eduSec.innerHTML = `
         <h2 class="resume-section-header">Education</h2>
         <div class="resume-body">
             <div class="edu-block">
@@ -134,7 +140,7 @@ export function renderResume(rootId) {
 
     // Skills
     const skillsSec = el('div','resume-section');
-    skillsSec.id = 'section-skills';
+    skillsSec.id = 'skills-container';
     skillsSec.innerHTML = `
         <h2 class="resume-section-header">Technical Skills</h2>
         <div class="resume-body">
@@ -147,7 +153,7 @@ export function renderResume(rootId) {
 
     // Experience
     const expSec = el('div','resume-section');
-    expSec.id = 'section-experience';
+    expSec.id = 'experience-container';
     expSec.innerHTML = `
         <h2 class="resume-section-header">Experience</h2>
         <div class="resume-body">
@@ -164,7 +170,7 @@ export function renderResume(rootId) {
 
     // Projects
     const projSec = el('div','resume-section');
-    projSec.id = 'section-projects';
+    projSec.id = 'projects-container';
     projSec.innerHTML = `
         <h2 class="resume-section-header">Projects</h2>
         <div class="resume-body">
@@ -181,7 +187,7 @@ export function renderResume(rootId) {
 
     // Awards
     const awardsSec = el('div','resume-section');
-    awardsSec.id = 'section-awards';
+    awardsSec.id = 'awards-container';
     awardsSec.innerHTML = `
         <h2 class="resume-section-header">Honors & Awards</h2>
         <div class="resume-body">

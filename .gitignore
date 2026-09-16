@@ -1,5 +1,8 @@
-node_modules/
-backup-vanilla/
-public/
-techSpecs/
+Thumbs.db
 .DS_Store
+node_modules/
+dist/
+.env
+.vscode/
+.idea/
+*.log
