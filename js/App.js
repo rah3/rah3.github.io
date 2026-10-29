@@ -10,10 +10,7 @@ import createEmailClipboard
 const createApp = () => {
 
   const services = [
-    createNavigation(
-      'nav',
-      'navToggle'
-    ),
+    createNavigation('nav', 'navToggle'),
 
     createScrollSpy(
       '.section',
@@ -24,7 +21,7 @@ const createApp = () => {
     createEmailClipboard(
       'copyEmail',
       'rahiedatta@gmail.com'
-    ),
+    )
   ];
 
   const init = () => {
@@ -34,7 +31,7 @@ const createApp = () => {
     );
 
     console.log(
-      'Portfolio initialized (Functional Composition)'
+      'Portfolio initialized'
     );
   };
 
@@ -44,7 +41,7 @@ const createApp = () => {
 document.addEventListener(
   'DOMContentLoaded',
   () => {
-    var initApp = createApp()
-    initApp.init()
+    const app = createApp();
+    app.init();
   }
 );
