@@ -1,0 +1,250 @@
+\documentclass{article}
+\usepackage{geometry}
+\geometry{letterpaper, margin=0.9in, includefoot}
+
+\usepackage{forest}
+\usepackage{lmodern}
+\usepackage{fontspec}
+\setmainfont{Calibri}
+\setmonofont{Consolas}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{scrextend}
+\changefontsizes{14.4pt}
+\setlength{\emergencystretch}{5em} % Prevent overfull lines
+\setlength{\hbadness}{10000} % Allow some overfull lines
+
+\usepackage{microtype}
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue]{hyperref}
+
+% Custom listing styling for project structure and code blocks
+% Define custom colors for syntax highlighting
+\definecolor{codegray}{rgb}{0.83,0.83,0.83}
+\definecolor{codeblue}{rgb}{0.1,0.1,0.8}
+\definecolor{codegreen}{rgb}{0.0,0.5,0.0}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{codeborder}{rgb}{0.85,0.85,0.88}
+
+\lstdefinestyle{codeblock}{
+    backgroundcolor=\color{codegray},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    keepspaces=true,
+    frame=single,
+    rulecolor=\color{codeborder},
+    framerule=0.5pt,
+    framesep=8pt,
+    tabsize=2,
+    showstringspaces=false
+}
+
+% Define JavaScript Language for listings
+\lstdefinelanguage{JavaScript}{
+  keywords={break, case, catch, continue, debugger, default, delete, do, else, finally, for, function, if, in, instanceof, new, return, switch, this, throw, try, typeof, let, const, var, void, while, with, async, await, export, import, from},
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]",
+  morestring=[b]`,
+  sensitive=true
+}
+
+% Configure global styling for code blocks
+\lstset{
+  language=JavaScript,
+  backgroundcolor=\color{backcolour},   
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{codeblue},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5.5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2,
+  frame=single,
+  rulecolor=\color{black!30}
+}
+
+\title{\textbf{Personal Portfolio Website (\texttt{rah3.github.io})}}
+\author{\textbf{Rahie Datta}}
+\date{Carleton University - Bachelor of Computer Science}
+
+\begin{document}
+
+\maketitle
+
+\noindent\textbf{Live Site:} \url{https://rah3.github.io} \\
+\textbf{GitHub Repository:} \url{https://github.com/rah3/rah3.github.io}
+
+\vspace{0.5cm}
+
+\section{About}
+
+I am a fourth-year Computer Science student at \textbf{Carleton University} pursuing a Bachelor of Computer Science with a Minor in Mathematics. 
+
+Core technical interests and focus areas include:
+\begin{itemize}
+    \item Software Engineering \& System Design
+    \item Linux Systems \& Process Management
+    \item Backend Development \& APIs
+    \item Database Design \& Optimization
+    \item Telecommunications Systems
+    \item Automation \& Scripting
+\end{itemize}
+
+\section{Technology Stack}
+
+The project relies on a modern, lightweight, and framework-free JavaScript architecture. It uses Node.js and Express solely for local development ergonomics, while the production assets are fully optimized for static delivery via GitHub Pages.
+
+\subsection{Frontend}
+\begin{itemize}
+    \item \textbf{HTML5 / CSS3}: Semantic markup and modern custom styling.
+    \item \textbf{Vanilla JavaScript (ES6+)}: Modular, performant implementation without heavy framework overhead.
+\end{itemize}
+
+\subsection{Backend \& Tooling}
+\begin{itemize}
+    \item \textbf{Node.js \& Express}: Local development server and static asset proxying.
+    \item \textbf{Git \& GitHub}: Version control and CI/CD hosting via GitHub Pages.
+    \item \textbf{Nodemon}: Hot-reloading utility during local development.
+\end{itemize}
+
+\section{Architectural Style}
+
+The codebase implements a \textbf{modular component pattern} and functional composition. Rather than relying on heavy client-side frameworks, the UI components are isolated into independent, testable modules.
+
+\subsection{Core Modules}
+\begin{itemize}
+    \item \texttt{Navigation.js}: Manages mobile responsive toggle states and layout adjustments.
+    \item \texttt{ScrollSpy.js}: Tracks user scroll position to dynamically highlight active navigation links.
+    \item \texttt{EmailClipboard.js}: Handles user interactions for quick email copying with visual feedback.
+\end{itemize}
+
+\subsection{Application Factory Pattern}
+Application startup and lifecycle management are initialized through a lightweight factory pattern:
+
+\begin{lstlisting}[style=codeblock, language=JavaScript]
+createApp().init();
+\end{lstlisting}
+
+\section{Features}
+Here are the features that make this portfolio website stand out:
+\begin{itemize}
+    \item \textbf{Fully Responsive}: Mobile-first design adapting seamlessly across mobile, tablet, and desktop viewports.
+    \item \textbf{Active Section Highlighting}: Real-time viewport tracking using intersection observers / scroll spy.
+    \item \textbf{Interactive Utilities}: One-click email copy-to-clipboard functionality.
+    \item \textbf{Lightweight \& Fast}: Zero frontend framework bloat ensuring instant page load speeds.
+    \item \textbf{Express Development Server}: Local mock environment mirroring production static behavior.
+\end{itemize}
+
+\section{Project Structure}
+Below is a visual representation of the repository structure:
+\begin{center}
+\begin{forest}
+  for tree={
+    font=\ttfamily\scriptsize,
+    grow'=0,
+    child anchor=west,
+    parent anchor=south,
+    anchor=west,
+    calign=first,
+    l sep=15pt,
+    s sep=6pt,
+  }
+  [rah3.github.io/
+    [{index.html -- Main entry markup}]
+    [{style.css -- Global stylesheet}]
+    [js/
+      [{App.js -- Core application factory}]
+      [{Navigation.js -- Mobile menu controller}]
+      [{ScrollSpy.js -- Active section tracker}]
+      [{EmailClipboard.js -- Clipboard utility}]
+    ]
+    [{server.js -- Express local development server}]
+    [{package.json -- Node.js dependencies and scripts}]
+    [{README.md -- Project documentation}]
+  ]
+\end{forest}
+\end{center}
+
+\section{Featured Projects}
+Below are some of the notable projects I have worked on during my academic career:
+\begin{enumerate}
+    \item Telecommunications Switching Database (COMP 3005)
+    \item Linux Systems \& Shell Development (COMP 3000)
+    \item Professional Portfolio Website (rah3.github.io)
+\end{enumerate}
+
+\subsection{Telecommunications Switching Database}
+\begin{itemize}
+    \item \textbf{Course:} COMP 3005 (Database Management Systems)
+    \item \textbf{Technologies:} SQLite, SQL, Relational Database Design
+    \item \textbf{Overview:} Designed and implemented a robust relational database schema tailored for telecommunications routing and subscriber switching management.
+\end{itemize}
+
+\subsection{Linux Systems \& Shell Development}
+\begin{itemize}
+    \item \textbf{Course:} COMP 3000 (Operating Systems)
+    \item \textbf{Technologies:} Linux, Bash, System Calls, C
+    \item \textbf{Overview:} Explored low-level OS primitives, process management (\texttt{fork}, \texttt{execve}), environment variable handling, and remote SSH administration.
+\end{itemize}
+
+\subsection{Professional Portfolio Website}
+\begin{itemize}
+    \item \textbf{Technologies:} Node.js, Express, JavaScript, HTML5/CSS3
+    \item \textbf{Overview:} This repository was built from scratch to highlight academic and practical engineering work.
+\end{itemize}
+
+\section{Local Development}
+
+To run the development environment locally:
+
+\begin{enumerate}
+    \item \textbf{Clone the repository:}
+\begin{lstlisting}[style=codeblock]
+git clone https://github.com/rah3/rah3.github.io.git
+cd rah3.github.io
+\end{lstlisting}
+
+    \item \textbf{Install dependencies:}
+\begin{lstlisting}[style=codeblock]
+npm install
+\end{lstlisting}
+
+    \item \textbf{Start the development server:}
+\begin{lstlisting}[style=codeblock]
+npm run dev
+\end{lstlisting}
+    \textit{(Or standard start: \texttt{npm start})}
+
+    \item \textbf{Open in your browser:} \\
+    Navigate to \url{http://localhost:3000}.
+\end{enumerate}
+
+\section{Deployment}
+
+This repository uses a decoupled deployment model:
+\begin{itemize}
+    \item \textbf{Production:} The contents of the \texttt{public/} directory are deployed statically to \textbf{GitHub Pages}.
+    \item \textbf{Development:} The \texttt{server.js} Express backend is used exclusively for local testing and does not run in production.
+\end{itemize}
+
+\section{Author}
+
+\textbf{Rahie Datta} \\
+Carleton University - Bachelor of Computer Science (BCS) \\
+Expected Graduation: 2027 \\
+GitHub: \url{https://github.com/rah3}
+
+\end{document}
