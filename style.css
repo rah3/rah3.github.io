@@ -501,7 +501,11 @@ a:hover {
 .profile {
   display: block;
   width: 15%;
-  align-self: center;
+  min-width: 120px;
+  max-width: 200px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 50%;
 }
 
 /* ==========================================================
