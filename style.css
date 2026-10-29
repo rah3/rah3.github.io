@@ -494,10 +494,9 @@ a:hover {
 }
 
 .logo {
-  display: block;
-  width: 50%;
+  max-width: 250px;
+  width: 25%;
   height: auto;
-  margin: 0 auto;
 }
 
 /* ==========================================================
