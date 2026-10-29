@@ -493,6 +493,13 @@ a:hover {
   margin-top: 6px;
 }
 
+.logo {
+  display: block;
+  width: 50%;
+  height: auto;
+  margin: 0 auto;
+}
+
 /* ==========================================================
    Responsive
    ========================================================== */
@@ -560,12 +567,5 @@ a:hover {
 
   .project-links a {
     text-align: center;
-  }
-
-  .logo {
-    display: block;
-    width: 50%;
-    height: auto;
-    margin: 0 auto;
   }
 }
