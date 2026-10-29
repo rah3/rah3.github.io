@@ -1,0 +1,131 @@
+\documentclass[12pt, addpoints, answers]{exam}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[most]{tcolorbox}
+\usepackage{listings, xcolor}
+\usepackage{amsmath, amssymb}
+\usepackage{parskip, unicode-math, fontspec}
+\usepackage[margin=0.5in, includefoot, legalpaper]{geometry}
+\setmainfont{STIX Two Text}
+\setmathfont{STIX Two Math}
+
+% Custom Colors for Code
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% Listing Style
+\lstset{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breaklines=true,                 
+    captionpos=b,                    
+    language=SQL
+}
+
+% tcolorbox for Relational Algebra
+\newtcolorbox{raguery}[1]{
+    colback=green!5!white,
+    colframe=green!75!black,
+    fonttitle=\bfseries,
+    title=#1,
+    width=0.95\textwidth
+}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{Problem Set 1.1 -- 1.3: Verification Document}} \\
+    \vspace{0.5em}
+    \textit{Focus: Subscriber Directory, Exchange Distribution, and Local Calls} \\
+    \vspace{1em}
+    \hrule
+    \vspace{1em}
+\end{center}
+\thispagestyle{empty}
+
+\begin{questions}
+
+% Question 1.1
+\question \textbf{Problem 1.1: Subscriber Directory Mapping} \\
+Produce a table consisting of the names and addresses of the subscribers and their phone numbers.
+
+\begin{raguery}{Relational Algebra Expression}
+    $\pi_{name, address, area, office, number}(subscribers \bowtie_{portid} lines)$
+\end{raguery}
+
+\begin{solution}
+\begin{lstlisting}
+SELECT
+    s.name,
+    s.address,
+    l.area,
+    l.office,
+    l.number
+FROM
+    subscribers s
+    JOIN lines l ON s.portid = l.portid;
+\end{lstlisting}
+\end{solution}
+
+\vspace{1em}
+
+% Question 1.2
+\question \textbf{Problem 1.2: Area and Office Code Aggregation} \\
+Produce a table that lists all the area code and office code combinations in the database and the number of subscribers for each.
+
+\begin{raguery}{Relational Algebra Expression}
+    $\gamma_{area, office; count(*) \to num\_subscribers}(lines)$
+\end{raguery}
+
+\begin{solution}
+\begin{lstlisting}
+SELECT
+    area,
+    office,
+    COUNT(*) AS num_subscribers
+FROM
+    lines
+GROUP BY
+    area,
+    office;
+\end{lstlisting}
+\end{solution}
+
+\vspace{1em}
+
+% Question 1.3
+\question \textbf{Problem 1.3: Intra-Switch Local Call Detection} \\
+List the names of all those subscribers who are the originators of a call to someone who is also a subscriber on the same switch.
+
+\begin{raguery}{Relational Algebra Expression}
+    $\pi_{name}(subscribers \bowtie_{portid=orig} (calls \bowtie_{orig=portid} \rho_{L1}(lines) \bowtie_{term=portid} \rho_{L2}(lines)))$
+\end{raguery}
+
+\begin{solution}
+\begin{lstlisting}
+SELECT DISTINCT
+    s.name
+FROM
+    calls c
+    JOIN lines l1 ON c.orig = l1.portid
+    JOIN lines l2 ON c.term = l2.portid
+    JOIN subscribers s ON c.orig = s.portid;
+\end{lstlisting}
+\end{solution}
+
+\end{questions}
+
+\begin{center}
+    \vfill
+    \hrule
+    \vspace{0.5em}
+    \textbf{End of Review Document}
+\end{center}
+
+\end{document}

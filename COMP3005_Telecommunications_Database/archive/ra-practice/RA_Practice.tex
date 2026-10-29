@@ -1,0 +1,131 @@
+\documentclass[12pt, answers]{exam}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in, includefoot]{geometry}
+\usepackage{tcolorbox, amssymb, amsmath, booktabs, listings, xcolor, hyperref, float}
+
+% --- Professional Link Setup ---
+\definecolor{darkblue}{rgb}{0, 0, 0.5}
+\hypersetup{colorlinks=true, linkcolor=darkblue, citecolor=darkblue, urlcolor=blue}
+
+% --- SQL Code Styling ---
+\lstset{
+    backgroundcolor=\color{gray!10},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!50!black},
+    language=SQL
+}
+
+\begin{document}
+
+\begin{center}
+    \begin{tcolorbox}[colback=darkblue!5, colframe=darkblue!75!black, title=\centering\Huge{Relational Algebra: Assignment 3 + Quiz 3}]
+        \LARGE
+        \textbf{Course:} COMP 3005AB --- Database Management Systems \\
+        \textbf{Student:} Rahie Datta (101263083) \\
+        \textbf{Instructor:} Dr. Louis D. Nel \\
+        \textbf{Due:} Feburary 25, 2025
+    \end{tcolorbox}
+\end{center}
+
+\section{Problem 1: Telephone Switch RA Specifications}
+\textit{Mathematical logic for queries P1.01--P1.10 based on Switch Model Rev 4.}
+
+\begin{questions}
+    \question \textbf{P1.01 (Directory):} $\Pi_{name, address, area, office, number} (S \bowtie_{S.portid = L.portid} L)$
+    \question \textbf{P1.02 (Office Count):} $_{area, office} \mathcal{G}_{COUNT(*) \rightarrow num\_sub} (L)$
+    \question \textbf{P1.03 (Intra-switch):} $\Pi_{name} (S \bowtie_{S.portid = C.orig} (C \bowtie_{orig=L1} L1 \bowtie_{term=L2} L2))$
+    \question \textbf{P1.04 (No Origination):} $\Pi_{name}(S) - \Pi_{name}(S \bowtie_{S.portid = C.orig} C)$
+    \question \textbf{P1.05 (Total Inactivity):} $\Pi_{name}(S) - \Pi_{name}(S \bowtie_{S.orig} C) - \Pi_{name}(S \bowtie_{S.term} C)$
+    \question \textbf{P1.06 (Power Users/Division):} $\Pi_{name, service}(S \bowtie SS) \div \Pi_{scode}(V)$
+    \question \textbf{P1.07 (Trunk Load):} $_{foreign\_sw} \mathcal{G}_{COUNT(call\_id)} (T \bowtie_{T.portid=C.orig \lor T.portid=C.term} C)$
+    \question \textbf{P1.08 (Service Rank):} $\tau_{sub\_count \downarrow} (_{service} \mathcal{G}_{COUNT(portid)} (V \bowtie_{left} SS))$
+    \question \textbf{P1.09 (Area 613):} $\Pi_{portid, foreign\_sw} (T \bowtie \sigma_{area=`613'}(TR))$
+    \question \textbf{P1.10 (Facility State):} $\Pi_{portid} (\sigma_{state=`BUSY'}(CH))$
+\end{questions}
+
+
+
+\section{Problem 2: myTunes Assembly RA Logic}
+\textit{Formalizing the ETL constraints for the unified database assembly.}
+
+\begin{questions}
+    \setcounter{question}{10}
+    \question \textbf{Orphan Pruning Logic:} \\
+    Represent the set of all songs in the master list that have a corresponding entry in the CD table (ensuring no orphans exist).
+    \begin{solution}
+    $ValidSongs = Songs \bowtie_{Songs.cd\_id = CDs.cd\_id} CDs$
+    \end{solution}
+
+    \question \textbf{Orphan Identification (The 204 Records):} \\
+    How the initial 204 orphans were identified using set difference.
+    \begin{solution}
+    $Orphans = \Pi_{cd\_id}(Songs) - \Pi_{cd\_id}(CDs)$
+    \end{solution}
+\end{questions}
+
+\section{Quiz 3 Performance Analysis}
+\begin{tcolorbox}[colback=red!5, colframe=red!75!black, title=Correction for Question 2]
+\textbf{The Error:} Misidentifying the natural join ($\ast$) requirement for non-identical column names (\textit{service} vs \textit{scode}). \\
+\textbf{The RA Fix:} $SERVICE\_COUNT(scode, n) = (service \mathcal{G}_{count(portid)} SS)$. By renaming the attribute to \textit{scode}, the natural join with the \textit{Services} table becomes valid.
+\end{tcolorbox}
+
+\section{Quiz 3 - Relational Algebra Review}
+\textit{Questions based on the Telephone Switching Database Rev 4 schema.}
+
+\begin{questions}
+    \question[1] Which ONE of the following will list the $\text{call\_id}$'s for all calls that both originate and terminate in a foreign switch (where both originator and terminator are trunks)?
+    \begin{choices}
+        \choice $\pi_{\text{call\_id}}(\text{calls} * \text{trunks} * \text{trunks})$
+        \choice $\pi_{\text{call\_id}}(\text{calls} \bowtie_{\text{orig}=\text{portid} \land \text{term}=\text{portid}} \text{trunks})$
+        \choice $\pi_{\text{call\_id}} (\text{calls} \bowtie_{\text{orig}=\text{portid} \land \text{term}=\text{portid}} \text{trunks})$
+        \choice $\sigma_{\text{call\_id}}(\text{calls} \bowtie_{\text{orig}=\text{term}} \text{trunks})$
+        \CorrectChoice $\pi_{\text{call\_id}} (\pi_{\text{call\_id, term}}(\text{calls} \bowtie_{\text{orig}=\text{portid}} \text{trunks}) \bowtie_{\text{term}=\text{portid}} \text{trunks})$
+    \end{choices}
+
+    \question[1] Which ONE of the following would list the names of all the services and the number of lines that subscribe to that service?
+    \begin{choices}
+        \choice $\text{SERVICE\_COUNT}(\text{scode, num\_services}) = \newline
+        (\text{service} \mathfrak{F}_{\text{count portid}}(\text{service\_subscribers})) \\ \pi_{\text{name, num\_services}}(\text{subscribers} * \text{SERVICE\_COUNT})$
+        \CorrectChoice $\text{SERVICE\_COUNT}(\text{scode, num\_services}) = \newline
+        (\text{service} \mathfrak{F}_{\text{count portid}}(\text{service\_subscribers})) \\ \pi_{\text{service, num\_services}}(\text{services} * \text{SERVICE\_COUNT})$
+        \choice $\text{SERVICE\_COUNT}(\text{service, num\_services}) = \newline
+        (\text{service} \mathfrak{F}_{\text{count portid}}(\text{service\_subscribers})) \\ \pi_{\text{service, num\_services}}(\text{services} * \text{SERVICE\_COUNT})$
+        \choice $\pi_{\text{service, num\_services}} ((\text{service} \mathfrak{F}_{\text{count portid}}(\text{service\_subscribers})))$
+    \end{choices}
+    \begin{solution}
+        Renaming the grouping attribute to scode is necessary because \text{service} in service\_subscribers is a foreign key, but \text{service} in the \text{services} table refers to the descriptive name. A natural join ($*$) requires identical column names to link the tables.
+    \end{solution}
+
+    \question[1] Which ONE of the following would list only the $\text{portid}$'s of the trunks that currently have at least one idle channel?
+    \begin{choices}
+        \choice $\pi_{\text{state}}(\sigma_{\text{state}=\text{`IDLE'}}(\text{channels} * \text{trunks}))$
+        \CorrectChoice $\pi_{\text{portid}}(\text{trunks} * \pi_{\text{portid}}(\sigma_{\text{state}=\text{`IDLE'}}(\text{channels})))$
+        \choice $\pi_{\text{portid}}(\sigma_{\text{state}=\text{`IDLE'}}(\text{trunks}))$
+        \choice $\pi_{\text{portid}}(\sigma_{\text{state}=\text{`IDLE'}}(\text{channels}))$
+        \choice $\pi_{\text{portid}}((\text{calls} \bowtie_{\text{orig}=\text{portid}} \text{trunks}) * \pi_{\text{portid}}(\sigma_{\text{state}=\text{`IDLE'}}(\text{channels})))$
+    \end{choices}
+
+    \question[1] Suppose a Line originator dialed (905) 238-1243. Which ONE of the following would find the $\text{portid}$'s of all the trunks that could route this call (including wildcards)?
+    \begin{choices}
+        \choice $\sigma_{\text{portid}}(\sigma_{\text{area=`905'} \lor \text{area=`000'}}(\text{trunks} * \text{channels}))$
+        \choice $\pi_{\text{portid}}(\sigma_{\text{area=`905'} \lor \text{area=`000'}}(\text{trunk\_routes}))$
+        \CorrectChoice $\pi_{\text{portid}}(\sigma_{(\text{area=`905'}
+        \land \text{office=`238'}) \lor (\text{area='905'} \land \text{office=`000'}) \lor (\text{area=`000'} \land \text{office=`000'})}\newline (\text{trunk\_routes}))$
+        \choice $\pi_{\text{portid}}(\sigma_{\text{state=`IDLE'}}(\text{trunk\_routes}))$
+        \choice $\pi_{\text{portid}}(\sigma_{\text{foreign\_switch=`905,238'}}(\text{trunks}))$
+    \end{choices}
+
+    \question[1] Which ONE of these relational algebra queries will find the address of everyone that subscribes to the `Call Waiting' service ($\text{scode=`CWT'}$)?
+    \begin{choices}
+        \choice $\sigma_{\text{address}}(\sigma_{\text{service=`Call Waiting'}}(\text{service\_subscribers}))$
+        \choice $\sigma_{\text{address}}(\text{subscribers} * \mathfrak{F}_{\text{COUNT scode}}(\text{services}))$
+        \choice $\pi_{\text{address}}(\text{service\_subscribers} * \text{subscribers})$
+        \choice $\pi_{\text{address}}(\sigma_{\text{service=`CWT'}}(\text{service\_subscribers} \bowtie_{\text{service='Call Waiting'}} \text{subscribers}))$
+        \CorrectChoice $\pi_{\text{address}}(\sigma_{\text{service=`CWT'}}(\text{service\_subscribers} * \text{subscribers}))$
+    \end{choices}
+\end{questions}
+
+\end{document}

@@ -1,0 +1,103 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in, includefoot]{geometry}
+\usepackage{tcolorbox, parskip, amssymb, amsmath, booktabs, listings, xcolor, hyperref, float}
+
+% --- Professional Link Setup ---
+\definecolor{darkblue}{rgb}{0, 0, 0.5}
+\hypersetup{colorlinks=true, linkcolor=darkblue, citecolor=darkblue, urlcolor=blue}
+
+% --- SQL Code Styling ---
+\lstset{
+    backgroundcolor=\color{gray!10},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!50!black},
+    language=SQL
+}
+
+\begin{document}
+
+\begin{tcolorbox}[colback=darkblue!5, colframe=darkblue!75!black, title=\centering\Huge{README: myTunes Database Assembly}]
+    \LARGE
+    \textbf{Course:} COMP 3005AB - Assignment 3 \\
+    \textbf{Student:} Rahie Datta (101263083) \\
+    \textbf{Instructor:} Dr. Louis D. Nel \hfill \textbf{Date:} \today
+\end{tcolorbox}
+
+\section{Project Overview}
+This project involved the consolidation of diverse SQL datasets into a unified, normalized \texttt{myTunes} database. Following the \textit{``Practice, Practice, Practice''} philosophy, the implementation ensures 100\% referential integrity and optimized query performance.
+
+\section{Problem 1: Telephone Scenario (P1.01--P1.10)}
+The first phase involved querying a telephone system database. Below are the Relational Algebra (RA) specifications for the core logic implemented in the \texttt{P1\_XX.sql} scripts \cite{nel_er_model}.
+
+\subsection{Relational Algebra Specifications}
+Let $S$=Subscribers, $L$=Lines, $C$=Calls, $V$=Services, $SS$=Service\_Subscribers, and $T$=Trunks.
+
+\begin{enumerate}
+    \item \textbf{P1.01 (Directory):} $\Pi_{name, address, area, office, number} (S \bowtie_{S.portid = L.portid} L)$ \cite{nel_rel_alg}
+    \item \textbf{P1.02 (Office Utilization):} $_{area, office} \mathcal{G}_{COUNT(*) \rightarrow num\_sub} (L)$ \cite{nel_rel_alg}
+    \item \textbf{P1.03 (Intra-switch Calls):} $\Pi_{name} (S \bowtie_{S.portid = C.orig} (C \bowtie L1 \bowtie L2))$ \cite{nel_rel_alg}
+    \item \textbf{P1.04 (No Origination):} $\Pi_{name}(S) - \Pi_{name}(S \bowtie_{S.portid = C.orig} C)$ \cite{nel_rel_alg}
+    \item \textbf{P1.05 (Total Inactivity):} $\Pi_{name}(S) - \Pi_{name}(S \bowtie_{S.orig} C) - \Pi_{name}(S \bowtie_{S.term} C)$ \cite{nel_rel_alg}
+    \item \textbf{P1.06 (Power Users/Division):} $\Pi_{name, service}(S \bowtie SS) \div \Pi_{scode}(V)$ \cite{nel_rel_alg}
+    \item \textbf{P1.07 (Trunk Load):} $_{foreign\_sw} \mathcal{G}_{COUNT(call\_id)} (T \bowtie_{T.portid=C.orig \lor T.portid=C.term} C)$ \cite{nel_rel_alg}
+    \item \textbf{P1.08 (Service Rank):} $\tau_{sub\_count \downarrow} (_{service} \mathcal{G}_{COUNT(portid)} (V \bowtie_{left} SS))$ \cite{nel_rel_alg}
+    \item \textbf{P1.09 (Area 613 Routing):} $\Pi_{portid, foreign\_sw} (T \bowtie \sigma_{area='613'}(TR))$ \cite{nel_rel_alg}
+    \item \textbf{P1.10 (Facility State):} $\Pi_{portid} (\sigma_{state='BUSY'}(CH))$ \cite{nel_rel_alg}
+\end{enumerate}
+
+
+\section{Problem 2: Database Assembly \& ETL}
+The assembly phase managed the ingestion of 6 TA-contributed datasets. 
+
+\subsection{Data Integrity \& Orphan Pruning}
+A total of \textbf{204 orphans} were initially detected. After merging the data and identifying malformed records from specific contributors, a final pruning step was executed:
+\begin{lstlisting}
+DELETE FROM master_songs WHERE cd_id NOT IN (SELECT cd_id FROM master_cds);
+\end{lstlisting}
+This resulted in a final count of \textbf{5,532 valid song records} and \textbf{0 orphans}.
+
+\subsection{Final Database Metrics}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lr}
+        \toprule
+        \textbf{Metric} & \textbf{Value} \\
+        \midrule
+        Total Songs Loaded & 5,532 \\
+        Total CDs Recorded & 441 \\
+        Average Songs/CD & 12.54 \\
+        Integrity Status & 100\% Verified \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Maintenance \& Optimization}
+The final \texttt{myTunes.db} was optimized using:
+\begin{itemize}
+    \item \textbf{VACUUM:} To reclaim storage and reduce fragmentation.
+    \item \textbf{ANALYZE:} To update the query planner's internal statistics for better join performance.
+\end{itemize}
+
+\section{References}
+\begin{thebibliography}{9}
+    \raggedright
+    \bibitem{sqlite_doc} 
+    SQLite Consortium, ``SQLite Documentation,'' \textit{sqlite.org}, 2025. 
+    Available: \url{https://www.sqlite.org/docs.html}
+
+    \bibitem{nel_rel_alg} 
+    L. D. Nel, ``01 Relational Algebra Part 1 Rev1,'' Course Notes for COMP 3005, Carleton University, 2021.
+    Available: \url{https://people.scs.carleton.ca/~ldnel/3005winter2026/notes/05%20Query%20Models/01%20Relational%20Algebra%20Part%201%20Rev1.pdf} \\
+    \textit{Used for: Formalizing SQL queries P1.01--P1.10 into Relational Algebra notation.}
+
+    \bibitem{nel_er_model} 
+    L. D. Nel, ``04 Telephone Switch ER Model Rev 4,'' Course Notes for COMP 3005, Carleton University, 2021. 
+    Available: \url{https://people.scs.carleton.ca/~ldnel/3005winter2026/notes/02B%20Sample%20SQLite%20Databases/04%20Telephone%20Switch%20ER%20Model%20Rev%204.pdf} \\
+    \textit{Used for: Identifying entity relationships (Subscribers, Lines, Trunks) and schema constraints.}
+\end{thebibliography}
+
+\end{document}
