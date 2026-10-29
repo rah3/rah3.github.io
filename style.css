@@ -494,6 +494,7 @@ a:hover {
 }
 
 .logo {
+  display: inline;
   width: 10%;
 }
 
